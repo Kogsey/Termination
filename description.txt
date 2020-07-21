@@ -1,0 +1,17 @@
+Check out the webpage and give me some feedback please!
+
+List of Additions:
+- new class - to be removed
+- three ores and an alloy
+- a couple of weapons scattered throughout progression
+- some random materials
+
+Planned(The stuff I have written in my notebook):
+- a boss called the dark cleaver
+- additions to the current accessory chains 
+- a group of similar ai enimies that throw boomerangs
+- some other random things I have written down
+
+update log (includes last three minor updates and a major one):
+
+0.0.1.5: removed engineer class and distributed items to other classes
