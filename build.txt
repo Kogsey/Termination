@@ -5,5 +5,5 @@ homepage = https://forums.terraria.org/index.php?threads/termination-mod-update-
 hideCode = true
 hideResources = true
 includesource = true
-buildIgnore = *.csproj, *.user, *.editorconfig, obj\*, bin\*, .vs\*includePDB = true
+buildIgnore = *.csproj, *.user, *.git, *.editorconfig, obj\*, bin\*, .vs\*includePDB = true
 includePDB = true

@@ -36,7 +36,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Electronic Eye");
+            DisplayName.SetDefault("Electronic Orb");
             Main.npcFrameCount[npc.type] = 4;
         }
 
