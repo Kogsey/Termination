@@ -40,16 +40,4 @@ namespace Termination.Items.Placeable.Workplaces
 			recipe.AddRecipe();
 		}
 	}
-	
-	public class ToolRecipe : ModRecipe
-	{
-		public ToolRecipe(Mod mod) : base(mod)
-		{
-		}
-
-		public override bool RecipeAvailable()
-		{
-			return Main.LocalPlayer.HasItem(mod.ItemType("EngineerTool"));
-		}
-	}
 }

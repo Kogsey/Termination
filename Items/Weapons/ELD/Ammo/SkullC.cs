@@ -16,7 +16,7 @@ namespace Termination.Items.Weapons.ELD.Ammo
 		public override void SetDefaults()
 		{
 			item.damage = 26;
-			item.ranged = false;
+			item.ranged = true;
 			item.width = 14;
 			item.height = 14;
 			item.maxStack = 999;
@@ -31,7 +31,7 @@ namespace Termination.Items.Weapons.ELD.Ammo
 
 		public override void AddRecipes()
 		{
-			ToolRecipe recipe = new ToolRecipe(mod);
+			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.Hive);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this, 50);

@@ -16,7 +16,7 @@ namespace Termination.Items.Weapons.ELD.Ammo
 		public override void SetDefaults()
 		{
 			item.damage = 5;
-			item.ranged = false;
+			item.ranged = true;
 			item.width = 14;
 			item.height = 14;
 			item.maxStack = 999;
@@ -31,23 +31,11 @@ namespace Termination.Items.Weapons.ELD.Ammo
 
 		public override void AddRecipes()
 		{
-			ToolRecipe recipe = new ToolRecipe(mod);
+			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.Hive);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this, 50);
 			recipe.AddRecipe();
-		}
-	}
-
-	public class ToolRecipe : ModRecipe
-	{
-		public ToolRecipe(Mod mod) : base(mod)
-		{
-		}
-
-		public override bool RecipeAvailable()
-		{
-			return Main.LocalPlayer.HasItem(mod.ItemType("EngineerTool"));
 		}
 	}
 }

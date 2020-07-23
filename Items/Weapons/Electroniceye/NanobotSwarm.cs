@@ -15,7 +15,7 @@ namespace Termination.Items.Weapons.Electroniceye
         public override void SetDefaults()
         {
             item.damage = 20;
-            item.ranged = false;
+            item.ranged = true;
             item.width = 40;
             item.height = 20;
             item.useTime = 8;

@@ -16,6 +16,7 @@ namespace Termination.Items.Weapons.ELD
 
 		public override void SetDefaults()
 		{
+			item.ranged = true;
 			item.damage =100;
 			item.width = 42;
 			item.height = 30;
