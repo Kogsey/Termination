@@ -6,7 +6,7 @@ List of Additions:
 - some random materials
 - post moonlord boss called the electronic orb (w/ added lore no one asked for)
 
-Planned(The stuff I have written in my notebook):
+Planned:
 - an armour set requiring a drop from the electronic orb and one of the three ores
 - a boss called the dark cleaver
 - additions to the current accessory chains 

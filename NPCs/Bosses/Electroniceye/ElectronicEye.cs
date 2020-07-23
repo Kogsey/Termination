@@ -157,7 +157,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
             if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
             {
-                Filters.Scene.Activate("ElectronicEyeEffect");
+               // Filters.Scene.Activate("ElectronicEyeEffect");
 
                 // Updating a filter
                // Filters.Scene["ElectronicEyeEffect"].GetShader().UseProgress(progress);

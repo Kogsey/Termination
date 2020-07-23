@@ -25,7 +25,7 @@ namespace Termination.Items.Weapons.ELD.Ammo
 			item.value = Item.sellPrice(0, 0, 1, 0);
 			item.rare = ItemRarityID.Orange;
 			item.shoot = mod.ProjectileType("BeeC");
-			item.shootSpeed = 4f;   
+			item.shootSpeed = 4f;
 			item.ammo = item.type;
 		}
 
