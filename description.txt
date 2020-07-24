@@ -16,6 +16,8 @@ Planned:
 - zenith blade level crafting trees and beyond for other classes (summoner included)
 - matter condenser converted to post moonlord powerfull crafting table
 
-update log (includes the last three minor updates and a summory for whats within the last major one):
+update log is not necessarily an upload log:
 
-0.0.1.5: removed engineer class and distributed items to other classes
+0.0.1.5: replaced Sirenium with hardened luminite
+
+0.0.1.4: removed engineer class and distributed items to other classes
