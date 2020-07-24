@@ -912,11 +912,11 @@ namespace Termination.NPCs.Bosses.Electroniceye
             }
             else
             {
-                if (Main.rand.Next(7) == 0)
+                if (Main.rand.Next(10) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PhantomMask"));
                 }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PhantomPlate"), Main.rand.Next(5, 8));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SusPlating"), Main.rand.Next(5, 15));
                 int reward = 0;
                 switch (Main.rand.Next(4))
                 {
