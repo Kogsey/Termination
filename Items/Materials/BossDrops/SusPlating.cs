@@ -9,8 +9,8 @@ namespace Termination.Items.Materials.BossDrops
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Hardened Luminite plating");
-			Tooltip.SetDefault("Not a really usefull item but can be used"
-			+ "conductive");
+			Tooltip.SetDefault("seems to be impossible to forge and yet here it is"
+			+ "could be mixed with something weaker");
 		}
 
 		public override void SetDefaults()
@@ -20,15 +20,6 @@ namespace Termination.Items.Materials.BossDrops
 			item.maxStack = 999;
 			item.value = 1000;
 			item.rare = ItemRarityID.Purple;
-		}
-
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "Araaxium", 4);
-			recipe.AddTile(mod, "Heatfurn");
-			recipe.SetResult(this);
-			recipe.AddRecipe();
 		}
 	}
 }
