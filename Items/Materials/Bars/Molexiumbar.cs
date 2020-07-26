@@ -10,8 +10,7 @@ namespace Termination.Items.Materials.Bars
 		{
 			DisplayName
 			.SetDefault("Molexium Bar");
-			Tooltip.SetDefault("I'm not sure if I should be impressed or scared"
-			+ "Just REALLY dense");
+			Tooltip.SetDefault("I'm not sure if I should be impressed or scared");
 		}
 
 		public override void SetDefaults()
@@ -20,7 +19,7 @@ namespace Termination.Items.Materials.Bars
 			item.height = 20;
 			item.maxStack = 999;
 			item.value = 3000;
-			item.rare = ItemRarityID.Green;
+			item.rare = ItemRarityID.Red;
 		}
 
 		public override void AddRecipes()

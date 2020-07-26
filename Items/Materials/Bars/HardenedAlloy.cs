@@ -8,8 +8,7 @@ namespace Termination.Items.Materials.Bars
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName
-			.SetDefault("Hardened luminite alloy");
+			DisplayName.SetDefault("Hardened luminite alloy");
 			Tooltip.SetDefault("unnervingly tough");
 		}
 
@@ -27,7 +26,7 @@ namespace Termination.Items.Materials.Bars
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "Sirenium", 7);
 			recipe.AddIngredient(null, "SusPlating", 1);
-			recipe.AddTile(ItemID.LunarCraftingStation);
+			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

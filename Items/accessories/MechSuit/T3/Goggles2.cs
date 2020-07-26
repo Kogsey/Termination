@@ -28,7 +28,6 @@ namespace Termination.Items.accessories.MechSuit.T3
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			TerminationPlayer modPlayer = TerminationPlayer.ModPlayer(player);
-			modPlayer.EngineerCrit += 20;
 		}
 
         public override void AddRecipes()

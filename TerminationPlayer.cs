@@ -21,9 +21,6 @@ namespace Termination
         // Vanilla only really has damage multipliers in code
         // And crit and knockback is usually just added to
         // As a modder, you could make separate variables for multipliers and simple addition bonuses
-        public float EngineerDamage = 1f;
-        public float EngineerKnockback = 0f;
-        public int EngineerCrit = 0;
 
         public override void ResetEffects()
         {
@@ -52,9 +49,6 @@ namespace Termination
 
         private void ResetVariables()
         {
-            EngineerDamage = 1f;
-            EngineerKnockback = 0f;
-            EngineerCrit = 0;
         }
     }
 }
