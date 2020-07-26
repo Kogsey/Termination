@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Termination.Buffs;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -36,7 +37,6 @@ namespace Termination.Projectiles.Melee
 			projectile.Center = TerminationHelper.PolarPos(Main.player[(int)projectile.ai[0]].Center, Distanse, MathHelper.ToRadians(Rotation));
 			projectile.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)projectile.ai[0]].Center, projectile.Center) - MathHelper.ToRadians(90);
 		}
-
 		public override bool? CanHitNPC(NPC target)
 		{
 			return !target.friendly;

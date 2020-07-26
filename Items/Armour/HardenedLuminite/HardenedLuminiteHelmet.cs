@@ -43,7 +43,9 @@ namespace Termination.Items.Armour.HardenedLuminite
             p.jumpBoost = true;
 
 			p.aggro += 1000;
-        }
+
+			p.AddBuff(mod.BuffType("HardenedLuminiteSetBonusBuff"), 5);
+		}
 		public override void ArmorSetShadows(Player player)
 		{
 			player.armorEffectDrawShadowSubtle = true;

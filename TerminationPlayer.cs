@@ -13,6 +13,8 @@ namespace Termination
 
         public bool Nanobot = false;
 
+        public bool HardenedLuminiteSetBonus = false;
+
         public static TerminationPlayer ModPlayer(Player player)
         {
             return player.GetModPlayer<TerminationPlayer>();
@@ -26,12 +28,16 @@ namespace Termination
         {
             ResetVariables();
             Nanobot = false;
+
+            HardenedLuminiteSetBonus = false;
         }
 
         public override void UpdateDead()
         {
             ResetVariables();
             Nanobot = false;
+
+            HardenedLuminiteSetBonus = false;
         }
 
         public override void UpdateBadLifeRegen()
