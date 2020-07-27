@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Termination.Items.accessories.MechSuit.T2
 {
-	public class Goggles : ModItem
-	{
+    public class Goggles : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("20% increased Engineer critical strike chance");
+        }
 
-		public override void SetStaticDefaults()
-		{
-            
-			Tooltip.SetDefault("20% increased Engineer critical strike chance");
-		}
-
-		public override void SetDefaults()
-		{
-			item.Size = new Vector2(34);
-			item.rare = ItemRarityID.Green;
-			item.accessory = true;
-		}
+        public override void SetDefaults()
+        {
+            item.Size = new Vector2(34);
+            item.rare = ItemRarityID.Green;
+            item.accessory = true;
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			TerminationPlayer modPlayer = TerminationPlayer.ModPlayer(player);
-		}
+            TerminationPlayer modPlayer = TerminationPlayer.ModPlayer(player);
+        }
 
         public override void AddRecipes()
         {

@@ -1,11 +1,9 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Termination.NPCs
 {
-    class BuffGlobalNPCs : GlobalNPC
+    internal class BuffGlobalNPCs : GlobalNPC
     {
         public override bool InstancePerEntity
         {

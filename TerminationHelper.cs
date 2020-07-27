@@ -1,5 +1,5 @@
-using System;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -321,24 +321,24 @@ namespace Termination
         }
 
         public static void DropItemInstanced(NPC npc, Vector2 Position, Vector2 HitboxSize, int itemType, int itemStack = 1, bool interactionRequired = true)
-		{	
-			if (itemType <= 0)
-				return;
-			if (Main.netMode == NetmodeID.Server)
-			{
-				int item = Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true, 0, false, false);
-				Main.itemLockoutTime[item] = 54000;
-				for (int remoteClient = 0; remoteClient < (int)byte.MaxValue; ++remoteClient)
-				{
-					if ((npc.playerInteraction[remoteClient] || !interactionRequired) && Main.player[remoteClient].active)
-						NetMessage.SendData(MessageID.InstancedItem, remoteClient, -1, null, item, 0.0f, 0.0f, 0.0f, 0, 0, 0);
-				}
-				Main.item[item].active = false;
-			}
-			else if (Main.netMode == NetmodeID.SinglePlayer)
-				Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, false, 0, false, false);
-			npc.value = 0.0f;
-		}
+        {
+            if (itemType <= 0)
+                return;
+            if (Main.netMode == NetmodeID.Server)
+            {
+                int item = Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true, 0, false, false);
+                Main.itemLockoutTime[item] = 54000;
+                for (int remoteClient = 0; remoteClient < (int)byte.MaxValue; ++remoteClient)
+                {
+                    if ((npc.playerInteraction[remoteClient] || !interactionRequired) && Main.player[remoteClient].active)
+                        NetMessage.SendData(MessageID.InstancedItem, remoteClient, -1, null, item, 0.0f, 0.0f, 0.0f, 0, 0, 0);
+                }
+                Main.item[item].active = false;
+            }
+            else if (Main.netMode == NetmodeID.SinglePlayer)
+                Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, false, 0, false, false);
+            npc.value = 0.0f;
+        }
     }
 
     [Flags]

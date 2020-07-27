@@ -1,15 +1,14 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Termination.NPCs.Bosses.Electroniceye
 {
     public class BallMetal2 : ModNPC
     {
-
         private float RotationSpeed = 0.025f;
         private float Rotation;
         private float distance = 300;
@@ -152,7 +151,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             timer1++;
             if (timer1 >= 120)
             {
-
                 Rotation += RotationSpeed;
                 Vector2 target = TerminationHelper.PolarPos(Head.npc.Center, -distance, MathHelper.ToRadians(Rotation));
                 npc.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
@@ -161,7 +159,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 shootVel *= 5f;
                 npc.velocity = shootVel;
 
-
                 Lazer("ElectronicEyeBeam", Main.player[npc.target].Center);
             }
             if (timer1 >= 359)
@@ -169,7 +166,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 timer1 = 0;
             }
         }
-
 
         private void Lazer(string whattoshoot, Vector2 wheretoshootit)
         {

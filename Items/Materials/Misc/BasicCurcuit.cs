@@ -1,43 +1,42 @@
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Termination.Items.Materials.Misc
 {
-	public class BasicCurcuit : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName
-			.SetDefault("Basic Curcuit");
-			Tooltip.SetDefault("This is one of the core components in all of an Engineer's creations.");
-		}
+    public class BasicCurcuit : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName
+            .SetDefault("Basic Curcuit");
+            Tooltip.SetDefault("This is one of the core components in all of an Engineer's creations.");
+        }
 
-		public override void SetDefaults()
-		{
-			item.width = 20;
-			item.height = 20;
-			item.maxStack = 999;
-			item.value = 600;
-			item.rare = ItemRarityID.Green;
-		}
+        public override void SetDefaults()
+        {
+            item.width = 20;
+            item.height = 20;
+            item.maxStack = 999;
+            item.value = 600;
+            item.rare = ItemRarityID.Green;
+        }
 
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddRecipeGroup("IronBar", 1);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddRecipeGroup("IronBar", 1);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
 
-			/*
+            /*
 			// Start a new Recipe. (Prepend with "ModRecipe " if 1st recipe in code block.)
 			recipe = new ModRecipe(mod);
-			// Add a Vanilla Ingredient. 
+			// Add a Vanilla Ingredient.
 			// Look up ItemIDs: https://github.com/bluemagic123/tModLoader/wiki/Vanilla-Item-IDs
 			// To specify more than one ingredient, use multiple recipe.AddIngredient() calls.
 			recipe.AddIngredient(ItemID.DirtBlock);
-			// An optional 2nd argument will specify a stack of the item. 
+			// An optional 2nd argument will specify a stack of the item.
 			recipe.AddIngredient(ItemID.Acorn, 10);
 			// We can also specify the current item as an ingredient
 			recipe.AddIngredient(this, 2);
@@ -62,6 +61,6 @@ namespace Termination.Items.Materials.Misc
 			// Finish your recipe
 			recipe.AddRecipe();
 			*/
-		}
-	}
+        }
+    }
 }

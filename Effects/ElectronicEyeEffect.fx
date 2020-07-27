@@ -22,16 +22,16 @@ float2 uZoom;
 
 float4 ElectronicEyeFilter(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
-    float4 color = tex2D(uImage0, coords);
-    float wave = 1 - frac(coords.x + uTime);
-    color.rgb = color.rgb * wave;
-    return color * sampleColor;
+	float4 color = tex2D(uImage0, coords);
+	float wave = 1 - frac(coords.x + uTime);
+	color.rgb = color.rgb * wave;
+	return color * sampleColor;
 }
 
 technique Technique1
 {
-    pass ElectronicEyeFilter
-    {
-        PixelShader = compile ps_2_0 ElectronicEyeFilter();
-    }
+	pass ElectronicEyeFilter
+	{
+		PixelShader = compile ps_2_0 ElectronicEyeFilter();
+	}
 }

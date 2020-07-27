@@ -1,12 +1,9 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Termination.Projectiles.NPCs.Boss.ElectronicEye;
-using static Terraria.ModLoader.ModContent;
 
 namespace Termination.NPCs.Bosses.Electroniceye
 {
@@ -25,6 +22,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
         private bool check1 = false;
         private bool teleportlocationcheck = false;
         private double Healthframes = 0f;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone:Anchor Head - Head Must Survive");
@@ -111,7 +109,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         public override void AI()
         {
-
             if (check1 == false)
             {
                 teleportlocation = Main.player[npc.target].Center;
@@ -165,7 +162,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             {
                 Spin();
             }
-
         }
 
         private void Spin()
@@ -200,6 +196,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 shoottimer1 += 1;
             }
         }
+
         public void TP()
         {
             if (timeuntilteleport <= 0)
@@ -244,7 +241,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             Dust.NewDust(dustlocation2, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
             Dust.NewDust(dustlocation3, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
             Dust.NewDust(dustlocation4, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
-
         }
 
         public override Color? GetAlpha(Color lightColor)

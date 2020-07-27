@@ -1,12 +1,11 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Termination.Projectiles.Engineer
 {
-    class Nanobots : ModProjectile
+    internal class Nanobots : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -41,7 +40,6 @@ namespace Termination.Projectiles.Engineer
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             projectile.damage = (int)(projectile.damage * 0.8);
-
         }
 
         public override void AI()

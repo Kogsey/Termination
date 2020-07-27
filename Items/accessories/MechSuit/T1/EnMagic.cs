@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Termination.Items.accessories.MechSuit.T1
 {
-	public class EnMagic : ModItem
-	{
-
-		public override void SetStaticDefaults()
-		{
+    public class EnMagic : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
             DisplayName.SetDefault("Band of Magic");
-			Tooltip.SetDefault("Increses mana regen twice as mutch as the band of mana regeneration" +
-			                   "plus 40 mana" +
-			                   "1 defence");
-		}
+            Tooltip.SetDefault("Increses mana regen twice as mutch as the band of mana regeneration" +
+                               "plus 40 mana" +
+                               "1 defence");
+        }
 
-		public override void SetDefaults()
-		{
-			item.Size = new Vector2(34);
+        public override void SetDefaults()
+        {
+            item.Size = new Vector2(34);
             item.rare = ItemRarityID.Green;
-			item.accessory = true;
-		}
+            item.accessory = true;
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			TerminationPlayer modPlayer = TerminationPlayer.ModPlayer(player);
+            TerminationPlayer modPlayer = TerminationPlayer.ModPlayer(player);
             player.manaRegen += 1;
             player.statManaMax2 += 40;
             player.statDefense += 1;

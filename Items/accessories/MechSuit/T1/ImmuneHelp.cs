@@ -5,28 +5,27 @@ using Terraria.ModLoader;
 
 namespace Termination.Items.accessories.MechSuit.T1
 {
-	public class ImmuneHelp : ModItem
-	{
-
-		public override void SetStaticDefaults()
-		{
+    public class ImmuneHelp : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
             DisplayName.SetDefault("Healing Nanobot Mix");
-			Tooltip.SetDefault("Increses life regen" + 
+            Tooltip.SetDefault("Increses life regen" +
                                "Makes you immune to enemy nanobots");
-		}
+        }
 
-		public override void SetDefaults()
-		{
-			item.Size = new Vector2(34);
-			item.rare = ItemRarityID.Green;
-			item.accessory = true;
-		}
+        public override void SetDefaults()
+        {
+            item.Size = new Vector2(34);
+            item.rare = ItemRarityID.Green;
+            item.accessory = true;
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			TerminationPlayer modPlayer = TerminationPlayer.ModPlayer(player);
+            TerminationPlayer modPlayer = TerminationPlayer.ModPlayer(player);
             player.buffImmune[mod.BuffType("Nanobot")] = true;
-		}
+        }
 
         public override void AddRecipes()
         {

@@ -1,13 +1,8 @@
-using System;
-using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
 
 namespace Termination.NPCs.Bosses.Electroniceye
 {
@@ -29,7 +24,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
         private Vector2 dustlocation2;
         private Vector2 dustlocation3;
         private Vector2 dustlocation4;
-
 
         public static float ElectronicEyeDistributePhase { get; set; }
         public static bool MaceLaunchCheck { get; set; }
@@ -65,7 +59,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             music = MusicID.Boss3;
             bossBag = mod.ItemType("ElectroniceyeBag");
         }
-
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -137,7 +130,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         public override void AI()
         {
-
             Initialize();
 
             if (!npc.HasValidTarget)
@@ -157,19 +149,19 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
             if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
             {
-               // Filters.Scene.Activate("ElectronicEyeEffect");
+                // Filters.Scene.Activate("ElectronicEyeEffect");
 
                 // Updating a filter
-               // Filters.Scene["ElectronicEyeEffect"].GetShader().UseProgress(progress);
+                // Filters.Scene["ElectronicEyeEffect"].GetShader().UseProgress(progress);
 
-               // Filters.Scene["ElectronicEyeEffect"].Deactivate();
+                // Filters.Scene["ElectronicEyeEffect"].Deactivate();
             }
 
             CheckDroneActive();
 
             if (Main.expertMode == true)
             {
-                if (npc.life <= npc.lifeMax && npc.life >= (npc.lifeMax * 2/3))
+                if (npc.life <= npc.lifeMax && npc.life >= (npc.lifeMax * 2 / 3))
                 {
                     Phase = 1f;
                 }
@@ -300,7 +292,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                     ChooseAttackRandom();
                 }
             }
-
         }
 
         private void ChooseAttackSequence()
@@ -482,6 +473,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
             ModifyVelocity(change);
             CapVelocity(ref npc.velocity, maxSpeed);
         }
+
         private void TeleportAttack()
         {
             npc.velocity.X = 0;
@@ -541,7 +533,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             {
                 npc.position = Main.player[npc.target].Center + (new Vector2(0, 300) - (npc.frame.Size() / 2));
             }
-
         }
 
         public virtual void TeleportDust(Vector2 dustlocation)
@@ -561,7 +552,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             Dust.NewDust(dustlocation2, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
             Dust.NewDust(dustlocation3, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
             Dust.NewDust(dustlocation4, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
-
         }
 
         private void LaserAttack()
@@ -569,6 +559,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
             Lazer("ElectronicEyeBeam", Main.player[npc.target].Center);
             IdleBehavior();
         }
+
         private void SpawnOrbs1(string whattoshoot)
         {
             npc.velocity.X = 0;
@@ -647,7 +638,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj15].friendly = false;
                 Main.projectile[proj15].hostile = true;
                 Main.projectile[proj15].scale = 1f;
-
             }
             else if (timer1 == 360)
             {
@@ -689,7 +679,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj11].friendly = false;
                 Main.projectile[proj11].hostile = true;
                 Main.projectile[proj11].scale = 1f;
-
             }
             else if (timer1 == 360)
             {
@@ -712,7 +701,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             }
             else if (timer1 == 50)
             {
-
                 int proj2 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
                 Main.projectile[proj2].friendly = false;
                 Main.projectile[proj2].hostile = true;
@@ -720,7 +708,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
             }
             else if (timer1 == 70)
             {
-
                 int proj3 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
                 Main.projectile[proj3].friendly = false;
                 Main.projectile[proj3].hostile = true;
@@ -732,7 +719,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj4].friendly = false;
                 Main.projectile[proj4].hostile = true;
                 Main.projectile[proj4].scale = 1f;
-
             }
             else if (timer1 == 100)
             {
@@ -740,16 +726,13 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj5].friendly = false;
                 Main.projectile[proj5].hostile = true;
                 Main.projectile[proj5].scale = 1f;
-
             }
             else if (timer1 == 110)
             {
-
                 int proj6 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
                 Main.projectile[proj6].friendly = false;
                 Main.projectile[proj6].hostile = true;
                 Main.projectile[proj6].scale = 1f;
-
             }
             else if (timer1 == 120)
             {
@@ -757,16 +740,13 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj7].friendly = false;
                 Main.projectile[proj7].hostile = true;
                 Main.projectile[proj7].scale = 1f;
-
             }
             else if (timer1 == 130)
             {
-
                 int proj8 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
                 Main.projectile[proj8].friendly = false;
                 Main.projectile[proj8].hostile = true;
                 Main.projectile[proj8].scale = 1f;
-
             }
             else if (timer1 == 140)
             {
@@ -781,7 +761,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj10].friendly = false;
                 Main.projectile[proj10].hostile = true;
                 Main.projectile[proj10].scale = 1f;
-
             }
             else if (timer1 == 160)
             {
@@ -789,16 +768,13 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj11].friendly = false;
                 Main.projectile[proj11].hostile = true;
                 Main.projectile[proj11].scale = 1f;
-
             }
             else if (timer1 == 170)
             {
-
                 int proj12 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
                 Main.projectile[proj12].friendly = false;
                 Main.projectile[proj12].hostile = true;
                 Main.projectile[proj12].scale = 1f;
-
             }
             else if (timer1 == 180)
             {
@@ -806,16 +782,13 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj13].friendly = false;
                 Main.projectile[proj13].hostile = true;
                 Main.projectile[proj13].scale = 1f;
-
             }
             else if (timer1 == 190)
             {
-
                 int proj14 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
                 Main.projectile[proj14].friendly = false;
                 Main.projectile[proj14].hostile = true;
                 Main.projectile[proj14].scale = 1f;
-
             }
             else if (timer1 == 200)
             {
@@ -823,7 +796,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 Main.projectile[proj15].friendly = false;
                 Main.projectile[proj15].hostile = true;
                 Main.projectile[proj15].scale = 1f;
-
             }
             else if (timer1 == 360)
             {
@@ -847,6 +819,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
             ModifyVelocity(change);
             CapVelocity(ref npc.velocity, maxSpeed);
         }
+
         private void Lazer(string whattoshoot, Vector2 wheretoshootit)
         {
             if (timer2 >= 10)
@@ -867,10 +840,9 @@ namespace Termination.NPCs.Bosses.Electroniceye
             }
         }
 
-
         private void SpawnMechs()
         {
-            SummonTimer ++;
+            SummonTimer++;
 
             if (SummonTimer >= 275)
             {
@@ -884,7 +856,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
             IdleBehavior();
         }
-
 
         private void ModifyVelocity(Vector2 modify, float weight = 0.05f)
         {
@@ -923,12 +894,15 @@ namespace Termination.NPCs.Bosses.Electroniceye
                     case 0:
                         reward = mod.ItemType("PhantomBlade");
                         break;
+
                     case 1:
                         reward = mod.ItemType("SpectreGun");
                         break;
+
                     case 2:
                         reward = mod.ItemType("PhantomSphere");
                         break;
+
                     case 3:
                         reward = mod.ItemType("PaladinStaff");
                         break;
@@ -950,7 +924,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         public override void FindFrame(int frameHeight)
         {
-
             // For the most part, our animation matches up with our states.
 
             if (AttackID == 0)
@@ -964,7 +937,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
             if (AttackID == 3)
             {
                 FrameCycle = 1;
-            } 
+            }
             if (AttackID == 4)
             {
                 FrameCycle = 1;

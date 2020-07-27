@@ -1,11 +1,10 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Termination.NPCs
 {
-    class AllGlobalNPC : GlobalNPC
+    internal class AllGlobalNPC : GlobalNPC
     {
         public override void NPCLoot(NPC npc)
         {
@@ -18,12 +17,12 @@ namespace Termination.NPCs
             {
                 Item.NewItem(npc.getRect(), mod.ItemType("NatureGift"), 15 + Main.rand.Next(5));
             }
-    
+
             if (npc.type == NPCID.KingSlime)
             {
                 Item.NewItem(npc.getRect(), mod.ItemType("SuperSlime"), 5 + Main.rand.Next(10));
             }
-    
+
             if (npc.type == NPCID.EyeofCthulhu)
             {
                 Item.NewItem(npc.getRect(), mod.ItemType("Cthulhustooth"), 6);

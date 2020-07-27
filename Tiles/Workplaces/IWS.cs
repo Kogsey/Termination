@@ -1,50 +1,40 @@
-using Terraria;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.IO;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
-using Terraria.UI;
-using Terraria.DataStructures;
-using Terraria.GameContent.UI;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Termination.Tiles.Workplaces
 {
-	public class IWS : ModTile
-	{		
-		public override void SetDefaults()
-		{
-			Main.tileSolidTop[Type] = true;
-			Main.tileFrameImportant[Type] = true;
-			Main.tileNoAttach[Type] = true;
-			Main.tileTable[Type] = true;
-			Main.tileLavaDeath[Type] = true;
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
-			TileObjectData.newTile.CoordinateHeights = new int[]{ 18 };
-			TileObjectData.addTile(Type);
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("IWS");
-			AddMapEntry(new Color(200, 200, 200), name);
-			dustType = mod.DustType("Spark");
-			disableSmartCursor = true;
-			adjTiles = new int[]{ TileID.WorkBenches };
-		}
+    public class IWS : ModTile
+    {
+        public override void SetDefaults()
+        {
+            Main.tileSolidTop[Type] = true;
+            Main.tileFrameImportant[Type] = true;
+            Main.tileNoAttach[Type] = true;
+            Main.tileTable[Type] = true;
+            Main.tileLavaDeath[Type] = true;
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
+            TileObjectData.newTile.CoordinateHeights = new int[] { 18 };
+            TileObjectData.addTile(Type);
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("IWS");
+            AddMapEntry(new Color(200, 200, 200), name);
+            dustType = mod.DustType("Spark");
+            disableSmartCursor = true;
+            adjTiles = new int[] { TileID.WorkBenches };
+        }
 
-		public override void NumDust(int i, int j, bool fail, ref int num)
-		{
-			num = fail ? 1 : 3;
-		}
+        public override void NumDust(int i, int j, bool fail, ref int num)
+        {
+            num = fail ? 1 : 3;
+        }
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(i * 16, j * 16, 32, 16, mod.ItemType("IWS"));
-		}
-	}
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        {
+            Item.NewItem(i * 16, j * 16, 32, 16, mod.ItemType("IWS"));
+        }
+    }
 }
