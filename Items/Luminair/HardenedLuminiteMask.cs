@@ -2,17 +2,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.Armour.HardenedLuminite
+namespace Termination.Items.Luminair
 {
     [AutoloadEquip(EquipType.Head)]
-    public class HardenedLuminiteHood : ModItem
+    public class HardenedLuminiteMask : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("luminair alloy hood");
-            Tooltip.SetDefault("Increases an Engineer's critical strike chance by 10");
-        }
-
         public override void SetDefaults()
         {
             item.width = 32;
@@ -23,9 +17,19 @@ namespace Termination.Items.Armour.HardenedLuminite
             item.Termination().extendedrarity = 12;
         }
 
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("luminair alloy mask");
+            Tooltip.SetDefault("Increases an Engineer's critical strike chance by 10");
+        }
+
         public override void UpdateEquip(Player player)
         {
-            player.allDamage += 0.44f;
+            player.allDamage += 0.09f;
+
+            player.magicCrit += 12;
+
+            player.statManaMax2 += 60;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)

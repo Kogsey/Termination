@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.Armour.HardenedLuminite
+namespace Termination.Items.Luminair
 {
     [AutoloadEquip(EquipType.Head)]
     public class HardenedLuminiteCap : ModItem

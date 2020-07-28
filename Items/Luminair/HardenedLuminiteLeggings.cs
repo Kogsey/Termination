@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.Armour.HardenedLuminite
+namespace Termination.Items.Luminair
 {
     [AutoloadEquip(EquipType.Legs)]
     public class HardenedLuminiteLeggings : ModItem
@@ -12,7 +12,7 @@ namespace Termination.Items.Armour.HardenedLuminite
             DisplayName.SetDefault("luminair alloy Leggings");
             Tooltip.SetDefault("Well padded " +
                 "\n6% increased damage " +
-                "\n20% incresed movement speed");
+                "\n20% increased movement speed");
         }
 
         public override void SetDefaults()

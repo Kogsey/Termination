@@ -20,7 +20,6 @@ namespace Termination
             //	AutoloadBackgrounds = true
             //}
         }
-
         public static bool NoInvasion(NPCSpawnInfo spawnInfo)
         {
             return !spawnInfo.invasion && ((!Main.pumpkinMoon && !Main.snowMoon) || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) && (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime);

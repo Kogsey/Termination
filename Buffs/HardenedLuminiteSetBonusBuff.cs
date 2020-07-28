@@ -14,8 +14,9 @@ namespace Termination.Buffs
         public override void SetDefaults()
         {
             Main.buffNoTimeDisplay[Type] = true;
-            DisplayName.SetDefault("Luminite Shards");
-        }
+            DisplayName.SetDefault("Luminite Storm");
+
+        }    
 
         public override void Update(Player player, ref int buffIndex)
         {

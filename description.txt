@@ -1,4 +1,4 @@
-Check out the webpage and give me some feedback please!
+Check out the web page and give me some feedback please!
 
 List of Additions:
 - a couple of weapons scattered throughout progression
@@ -6,18 +6,20 @@ List of Additions:
 - post moonlord boss called the electronic orb (w/ added lore no one asked for)
 
 Planned:
-- an armour set requiring a drop from the electronic orb and one of the three ores
+- an Armour set requiring a drop from the electronic orb and one of the three ores
 - a boss called the dark cleaver
 - additions to the current accessory chains 
-- a group of similar ai enimies that throw boomerangs
+- a group of similar AI enemies that throw boomerangs
 - an enemy that looks like a bunny but deals damage and spawns underground
 - zenith blade level crafting trees and beyond for other classes (summoner included)
-- matter condenser converted to post moonlord powerfull crafting table
+- matter condenser converted to post moonlord powerful crafting table
 - some other random things I have written down
 
 update log is not necessarily an upload log:
 
-0.0.2.0: fully implemented the luminair alloy armour set and weapons
+0.0.2.1: decided I didn't like stuff and re-did it
+
+0.0.2.0: fully implemented the luminair alloy Armour set and weapons
 
 0.0.1.6: added post moonlord rarities coinciding with calamities colors
 
