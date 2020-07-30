@@ -16,10 +16,10 @@ namespace Termination.Items.Luminair
 		}
 
 		public override void SetDefaults() {
-			item.damage = 50;
+			item.damage = 200;
 			item.melee = true;
-			item.width = 40;
-			item.height = 40;
+			item.width = 56;
+			item.height = 56;
 			item.useTime = 20;
 			item.useAnimation = 20;
 			item.useStyle = ItemUseStyleID.SwingThrow;
@@ -29,7 +29,7 @@ namespace Termination.Items.Luminair
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shoot = ModContent.ProjectileType<LuminairSwordProj>();
-			item.shootSpeed = 5f;
+			item.shootSpeed = 10f;
 		}
 
 		public override void AddRecipes() {
@@ -44,14 +44,18 @@ namespace Termination.Items.Luminair
 				target.AddBuff(mod.BuffType(""), 60);
 		}
 
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
-			// Fix the speedX and Y to point them horizontally.
-			// Add random Rotation
-			Vector2 speed = new Vector2(speedX, speedY);
-			speed = speed.RotatedByRandom(MathHelper.ToRadians(30));
-			// Change the damage since it is based off the weapons damage and is too high
-			damage = (int)(damage * .1f);
-			return true;
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		{
+			int numberProjectiles = 2 + Main.rand.Next(2, 4); // 4 or 5 shots
+			for (int i = 0; i < numberProjectiles; i++)
+			{
+				Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(30)); // 30 degree spread.
+																												// If you want to randomize the speed to stagger the projectiles
+																												// float scale = 1f - (Main.rand.NextFloat() * .3f);
+																												// perturbedSpeed = perturbedSpeed * scale; 
+				Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+			}
+			return false; // return false because we don't want tmodloader to shoot projectile
 		}
 	}
 }

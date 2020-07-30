@@ -32,7 +32,7 @@ namespace Termination.Items.Luminair
 
             player.meleeCrit += 17;
 
-            player.meleeSpeed += 20;
+            player.meleeSpeed += (float)0.2;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
