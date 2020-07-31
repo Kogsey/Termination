@@ -8,7 +8,6 @@ namespace Termination
 {
     public class TerminationWorld : ModWorld
     {
-        private const int saveVersion = 0;
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {

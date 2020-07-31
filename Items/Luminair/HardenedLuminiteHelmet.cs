@@ -42,9 +42,7 @@ namespace Termination.Items.Luminair
 
         public override void UpdateArmorSet(Player p)
         {
-            p.setBonus = "Enimies are more likely to target you";
-
-            p.jumpBoost = true;
+            p.setBonus = "Enemies are more likely to target you";
 
             p.aggro += 1000;
 
