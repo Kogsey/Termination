@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Termination.NPCs.Bosses.Electroniceye
 {
-    public class BallMetal : ModNPC
+    public class BallMetal4 : ModNPC
     {
         private float timer1 = 0;
         private float shoottimer1 = 5f;
@@ -121,7 +121,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         private void Spin()
         {
-            npc.Center = ElectronicEye.ballmetalcenter1;
+            npc.Center = ElectronicEye.ballmetalcenter4;
             npc.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
         }
 
@@ -130,7 +130,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
             timer1++;
             if (timer1 >= 120)
             {
-                Vector2 target = ElectronicEye.ballmetalcenter1;
+                Vector2 target = ElectronicEye.ballmetalcenter4;
                 npc.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
                 Vector2 shootVel = target - npc.Center;
                 shootVel.Normalize();

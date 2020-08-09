@@ -15,9 +15,12 @@ Planned:
 - matter condenser converted to post Moon Lord powerful crafting table
 - some other random things I have written down
 
-update log is not necessarily an upload log and contains future plans:
+update log is not necessarily an upload log, contains future plans and is subject to change:
+0.1.0.0: fully implemented the electronic orb, the luminair tier and associated post Moon Lord items
 
 0.0.2.0: fully implemented the luminair alloy Armour set and weapons
+
+0.0.1.8: added a few attacks to the electronic orbs phase 3 - it be brutal
 
 0.0.1.7: fixed a texture - yeah this gets it's own entry
 

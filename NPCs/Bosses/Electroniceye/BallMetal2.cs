@@ -9,15 +9,12 @@ namespace Termination.NPCs.Bosses.Electroniceye
 {
     public class BallMetal2 : ModNPC
     {
-        private float RotationSpeed = 0.025f;
-        private float Rotation;
-        private float distance = 300;
         private float timer1 = 0;
         private float shoottimer1 = 5f;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("MACE2");
+            DisplayName.SetDefault("MACE1");
         }
 
         public override void SetDefaults()
@@ -112,23 +109,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 npc.TargetClosest(false);
             }
 
-            if (ElectronicEye.ElectronicEyeDistributePhase == 1)
-            {
-                RotationSpeed = 0.1f;
-                if (distance <= 400)
-                {
-                    distance++;
-                }
-            }
-            else
-            {
-                RotationSpeed = 0.025f;
-                if (distance >= 200)
-                {
-                    distance--;
-                }
-            }
-
             if (ElectronicEye.ElectronicEyeDistributePhase <= 1)
             {
                 Spin();
@@ -141,8 +121,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         private void Spin()
         {
-            Rotation += RotationSpeed;
-            npc.Center = TerminationHelper.PolarPos(Head.npc.Center, -distance, MathHelper.ToRadians(Rotation));
+            npc.Center = ElectronicEye.ballmetalcenter2;
             npc.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
         }
 
@@ -151,8 +130,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
             timer1++;
             if (timer1 >= 120)
             {
-                Rotation += RotationSpeed;
-                Vector2 target = TerminationHelper.PolarPos(Head.npc.Center, -distance, MathHelper.ToRadians(Rotation));
+                Vector2 target = ElectronicEye.ballmetalcenter2;
                 npc.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
                 Vector2 shootVel = target - npc.Center;
                 shootVel.Normalize();

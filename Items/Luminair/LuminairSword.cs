@@ -16,7 +16,7 @@ namespace Termination.Items.Luminair
 		}
 
 		public override void SetDefaults() {
-			item.damage = 300;
+			item.damage = 200;
 			item.melee = true;
 			item.width = 56;
 			item.height = 56;

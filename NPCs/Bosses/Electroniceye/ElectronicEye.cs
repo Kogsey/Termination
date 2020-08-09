@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Threading;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,6 +25,15 @@ namespace Termination.NPCs.Bosses.Electroniceye
         private Vector2 dustlocation2;
         private Vector2 dustlocation3;
         private Vector2 dustlocation4;
+
+        public static Vector2 ballmetalcenter1;
+        public static Vector2 ballmetalcenter2;
+        public static Vector2 ballmetalcenter3;
+        public static Vector2 ballmetalcenter4;
+
+        private float RotationSpeed = 0.025f;
+        private float Rotation;
+        private float distance = 300;
 
         public static float ElectronicEyeDistributePhase { get; set; }
         public static bool MaceLaunchCheck { get; set; }
@@ -147,6 +157,33 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 return;
             }
 
+            if (ElectronicEyeDistributePhase <= 1)
+            {
+                Rotation += RotationSpeed;
+                ballmetalcenter1 = TerminationHelper.PolarPos(npc.Center, distance, MathHelper.ToRadians(Rotation));
+                ballmetalcenter2 = TerminationHelper.PolarPos(npc.Center, distance, MathHelper.ToRadians(Rotation + MathHelper.Pi));
+                ballmetalcenter3 = TerminationHelper.PolarPos(npc.Center, distance, MathHelper.ToRadians(Rotation + MathHelper.PiOver2));
+                ballmetalcenter4 = TerminationHelper.PolarPos(npc.Center, distance, MathHelper.ToRadians(Rotation - MathHelper.PiOver2));
+            }
+
+            if (ElectronicEyeDistributePhase == 1)
+            {
+                RotationSpeed = 0.1f;
+                if (distance <= 400)
+                {
+                    distance++;
+                }
+            }
+            else
+            {
+                RotationSpeed = 0.025f;
+                if (distance >= 200)
+                {
+                    distance--;
+                }
+            }
+
+
             if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
             {
                 // Filters.Scene.Activate("ElectronicEyeEffect");
@@ -169,7 +206,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 {
                     Phase = 2f;
                 }
-                else if (npc.life <= (npc.lifeMax * 1 / 3) && npc.life >= -100000)
+                else if (npc.life <= (npc.lifeMax * 1 / 3))
                 {
                     Phase = 3f;
                 }
@@ -273,7 +310,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 }
                 else if (AttackID == 1f)
                 {
-                    WildSpinAttack();
+                    SpawnOrbs4("ElectronicEyeThornBallAngry");
                 }
                 else if (AttackID == 2f)
                 {
@@ -285,8 +322,9 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 }
                 else
                 {
-                    IdleBehavior();
+                    WildSpinAttack();
                 }
+
                 if (AttackTimer >= 720)
                 {
                     ChooseAttackRandom();
@@ -320,7 +358,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         private void ChooseAttackRandom()
         {
-            AttackID = Main.rand.NextFloat(1, 6);
+            AttackID = Main.rand.Next(1, 3);
             AttackTimer = 0f;
             npc.TargetClosest(false);
             npc.netUpdate = true;
@@ -353,6 +391,27 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 int right = NPC.NewNPC(spawnX + 128, spawnY, mod.NPCType("BallMetal2"), 0, npc.whoAmI, 1f, 0f, -60f);
 
                 Main.npc[right].netUpdate = true;
+            }
+
+            if (Phase == 3f)
+            {
+                if (NPC.AnyNPCs(mod.NPCType("BallMetal3")) == false)
+                {
+                    int spawnX = (int)npc.Center.X;
+                    int spawnY = (int)npc.Center.Y + 64;
+                    int left = NPC.NewNPC(spawnX - 128, spawnY, mod.NPCType("BallMetal3"), 0, npc.whoAmI, -1f, 0f, -30f);
+
+                    Main.npc[left].netUpdate = true;
+                }
+
+                if (NPC.AnyNPCs(mod.NPCType("BallMetal4")) == false)
+                {
+                    int spawnX = (int)npc.Center.X;
+                    int spawnY = (int)npc.Center.Y + 64;
+                    int right = NPC.NewNPC(spawnX + 128, spawnY, mod.NPCType("BallMetal4"), 0, npc.whoAmI, 1f, 0f, -60f);
+
+                    Main.npc[right].netUpdate = true;
+                }
             }
         }
 
@@ -692,110 +751,32 @@ namespace Termination.NPCs.Bosses.Electroniceye
         {
             npc.velocity.X = 0;
             npc.velocity.Y = 0;
-            if (timer1 == 30)
+            if (timer1 == 30 || timer1 == 50 || timer1 == 70 || timer1 == 90 || timer1 == 100 || timer1 == 110 || timer1 == 120 || timer1 == 130 || timer1 == 140 || timer1 == 150 || timer1 == 160 || timer1 == 170 || timer1 == 180 || timer1 == 190 || timer1 == 200)
             {
                 int proj1 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
                 Main.projectile[proj1].friendly = false;
                 Main.projectile[proj1].hostile = true;
                 Main.projectile[proj1].scale = 1f;
             }
-            else if (timer1 == 50)
+            else if (timer1 == 360)
             {
-                int proj2 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj2].friendly = false;
-                Main.projectile[proj2].hostile = true;
-                Main.projectile[proj2].scale = 1f;
+                timer1 = 0;
             }
-            else if (timer1 == 70)
+
+            timer1 += 1;
+        }
+        private void SpawnOrbs4(string whattoshoot)
+        {
+            npc.velocity.X = 0;
+            npc.velocity.Y = 0;
+            if (timer1 == 10 || timer1 == 20 || timer1 == 30 || timer1 == 40 || timer1 == 50 || timer1 == 60 || timer1 == 70 || timer1 == 80 || timer1 == 90 || timer1 == 100 || timer1 == 110 || timer1 == 120 || timer1 == 130 || timer1 == 140
+                || timer1 == 150 || timer1 == 160 || timer1 == 170 || timer1 == 180 || timer1 == 190 || timer1 == 200 || timer1 == 210 || timer1 == 220 || timer1 == 230 || timer1 == 240 || timer1 == 250 || timer1 == 260 || timer1 == 270
+                || timer1 == 280 || timer1 == 290 || timer1 == 300)
             {
-                int proj3 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj3].friendly = false;
-                Main.projectile[proj3].hostile = true;
-                Main.projectile[proj3].scale = 1f;
-            }
-            else if (timer1 == 90)
-            {
-                int proj4 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj4].friendly = false;
-                Main.projectile[proj4].hostile = true;
-                Main.projectile[proj4].scale = 1f;
-            }
-            else if (timer1 == 100)
-            {
-                int proj5 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj5].friendly = false;
-                Main.projectile[proj5].hostile = true;
-                Main.projectile[proj5].scale = 1f;
-            }
-            else if (timer1 == 110)
-            {
-                int proj6 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj6].friendly = false;
-                Main.projectile[proj6].hostile = true;
-                Main.projectile[proj6].scale = 1f;
-            }
-            else if (timer1 == 120)
-            {
-                int proj7 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj7].friendly = false;
-                Main.projectile[proj7].hostile = true;
-                Main.projectile[proj7].scale = 1f;
-            }
-            else if (timer1 == 130)
-            {
-                int proj8 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj8].friendly = false;
-                Main.projectile[proj8].hostile = true;
-                Main.projectile[proj8].scale = 1f;
-            }
-            else if (timer1 == 140)
-            {
-                int proj9 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj9].friendly = false;
-                Main.projectile[proj9].hostile = true;
-                Main.projectile[proj9].scale = 1f;
-            }
-            else if (timer1 == 150)
-            {
-                int proj10 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj10].friendly = false;
-                Main.projectile[proj10].hostile = true;
-                Main.projectile[proj10].scale = 1f;
-            }
-            else if (timer1 == 160)
-            {
-                int proj11 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj11].friendly = false;
-                Main.projectile[proj11].hostile = true;
-                Main.projectile[proj11].scale = 1f;
-            }
-            else if (timer1 == 170)
-            {
-                int proj12 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj12].friendly = false;
-                Main.projectile[proj12].hostile = true;
-                Main.projectile[proj12].scale = 1f;
-            }
-            else if (timer1 == 180)
-            {
-                int proj13 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj13].friendly = false;
-                Main.projectile[proj13].hostile = true;
-                Main.projectile[proj13].scale = 1f;
-            }
-            else if (timer1 == 190)
-            {
-                int proj14 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj14].friendly = false;
-                Main.projectile[proj14].hostile = true;
-                Main.projectile[proj14].scale = 1f;
-            }
-            else if (timer1 == 200)
-            {
-                int proj15 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[proj15].friendly = false;
-                Main.projectile[proj15].hostile = true;
-                Main.projectile[proj15].scale = 1f;
+                int proj1 = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-500, 500), npc.Center.Y + Main.rand.Next(-500, 500), 0, 0, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
+                Main.projectile[proj1].friendly = false;
+                Main.projectile[proj1].hostile = true;
+                Main.projectile[proj1].scale = 1f;
             }
             else if (timer1 == 360)
             {
