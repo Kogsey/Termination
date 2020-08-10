@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.NPCs.Bosses.Electroniceye
+namespace Termination.NPCs.Bosses.ElectronicEye
 {
     [AutoloadBossHead]
     public class ElectronicEye : ModNPC
@@ -67,7 +67,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 npc.buffImmune[k] = true;
             }
             music = MusicID.Boss3;
-            bossBag = mod.ItemType("ElectroniceyeBag");
+            bossBag = mod.ItemType("ElectronicEyeBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -314,11 +314,11 @@ namespace Termination.NPCs.Bosses.Electroniceye
                 }
                 else if (AttackID == 2f)
                 {
-                    SpawnMechs();
+                    DeathBeam();
                 }
                 else if (AttackID == 3f)
                 {
-                    WildSpinAttack();
+                    DeathBeam();
                 }
                 else
                 {
@@ -617,6 +617,11 @@ namespace Termination.NPCs.Bosses.Electroniceye
         {
             Lazer("ElectronicEyeBeam", Main.player[npc.target].Center);
             IdleBehavior();
+        }
+
+        private void DeathBeam()
+        {
+            int proj1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 1, 1, ProjectileID.PhantasmalDeathray, npc.damage / 2, 5f, Main.myPlayer);
         }
 
         private void SpawnOrbs1(string whattoshoot)

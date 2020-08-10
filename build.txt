@@ -1,5 +1,5 @@
 ﻿author = Kogsey
-version = 0.0.1.7
+version = 0.0.1.8
 displayName = [c/59231b:Termination]
 homepage = https://forums.terraria.org/index.php?threads/termination-mod-update-changelog-page.96182/
 hideCode = true

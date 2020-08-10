@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.NPCs.Bosses.Electroniceye
+namespace Termination.NPCs.Bosses.ElectronicEye
 {
     public class ElectronicEyeDrone : ModNPC
     {
@@ -22,7 +22,6 @@ namespace Termination.NPCs.Bosses.Electroniceye
         private bool check1 = false;
         private bool teleportlocationcheck = false;
         private double Healthframes = 0f;
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone:Anchor Head - Head Must Survive");
@@ -109,12 +108,14 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         public override void AI()
         {
+
             if (check1 == false)
             {
                 teleportlocation = Main.player[npc.target].Center;
                 check1 = true;
                 timeuntilteleport = 49;
             }
+
             NPC headNPC = Main.npc[(int)npc.ai[0]];
             if (!headNPC.active || headNPC.type != mod.NPCType("ElectronicEye"))
             {
@@ -255,7 +256,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModContent.GetTexture("Termination/NPCs/Bosses/Electroniceye/BallMetal_Chain");
+            Texture2D texture = ModContent.GetTexture("Termination/NPCs/Bosses/ElectronicEye/BallMetal_Chain");
 
             Vector2 position = npc.Center;
             Vector2 mountedCenter = Head.npc.Center;

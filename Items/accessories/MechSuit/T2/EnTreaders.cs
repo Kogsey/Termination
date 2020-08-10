@@ -39,7 +39,7 @@ namespace Termination.Items.accessories.MechSuit.T2
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(ItemID.FrostsparkBoots, 1);
                 recipe.AddIngredient(ItemID.LavaWaders, 1);
-                recipe.AddIngredient(null, "ElectroniceyeMask", 5);
+                recipe.AddIngredient(null, "ElectronicEyeMask", 5);
                 recipe.AddIngredient(null, "Coolant", 20);
                 recipe.AddIngredient(null, "AdvancedCurcuit", 5);
                 recipe.AddTile(mod, "IWS");

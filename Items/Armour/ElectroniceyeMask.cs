@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 namespace Termination.Items.Armour
 {
     [AutoloadEquip(EquipType.Head)]
-    public class ElectroniceyeMask : ModItem
+    public class ElectronicEyeMask : ModItem
     {
         public override void SetDefaults()
         {

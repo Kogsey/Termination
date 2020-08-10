@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.Weapons.Electroniceye
+namespace Termination.Items.Weapons.ElectronicEye
 {
     public class NanobotSwarm : ModItem
     {

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.NPCs.Bosses.Electroniceye
+namespace Termination.NPCs.Bosses.ElectronicEye
 {
     public class BallMetal4 : ModNPC
     {
@@ -192,7 +192,7 @@ namespace Termination.NPCs.Bosses.Electroniceye
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModContent.GetTexture("Termination/NPCs/Bosses/Electroniceye/BallMetal_Chain");
+            Texture2D texture = ModContent.GetTexture("Termination/NPCs/Bosses/ElectronicEye/BallMetal_Chain");
 
             Vector2 position = npc.Center;
             Vector2 mountedCenter = Head.npc.Center;

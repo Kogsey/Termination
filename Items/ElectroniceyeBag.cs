@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Termination.Items
 {
-    public class ElectroniceyeBag : ModItem
+    public class ElectronicEyeBag : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -44,7 +44,7 @@ namespace Termination.Items
                     break;
 
                 case 2:
-                    _ = mod.ItemType("ElectroniceyeMount");
+                    _ = mod.ItemType("ElectronicEyeMount");
                     break;
 
                 case 3:

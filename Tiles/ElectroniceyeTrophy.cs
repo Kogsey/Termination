@@ -5,7 +5,7 @@ using Terraria.ObjectData;
 
 namespace Termination.Tiles
 {
-    public class ElectroniceyeTrophy : ModTile
+    public class ElectronicEyeTrophy : ModTile
     {
         public override void SetDefaults()
         {
@@ -28,7 +28,7 @@ namespace Termination.Tiles
             switch (frameX / 54)
             {
                 case 0:
-                    item = mod.ItemType("ElectroniceyeTrophy");
+                    item = mod.ItemType("ElectronicEyeTrophy");
                     break;
             }
             if (item > 0)

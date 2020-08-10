@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Termination.Items.Placeable
 {
-    public class ElectroniceyeTrophy : ModItem
+    public class ElectronicEyeTrophy : ModItem
     {
         public override void SetDefaults()
         {
@@ -18,7 +18,7 @@ namespace Termination.Items.Placeable
             item.consumable = true;
             item.value = 50000;
             item.rare = ItemRarityID.Blue;
-            item.createTile = mod.TileType("ElectroniceyeTrophy");
+            item.createTile = mod.TileType("ElectronicEyeTrophy");
             item.placeStyle = 0;
         }
     }
