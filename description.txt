@@ -21,7 +21,7 @@ update log is not necessarily an upload log and contains future plans:
 
 0.0.1.7: fixed a texture - yeah this gets it's own entry
 
-0.0.1.6: added post Moon Lord rarities coinciding with calamities colors
+0.0.1.6: added post Moon Lord rarities coinciding with the colors of calamity mod
 
 0.0.1.5: replaced sirenium with luminair alloy and updated loot tables
 
