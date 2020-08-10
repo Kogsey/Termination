@@ -9,7 +9,7 @@ namespace Termination.Items.Tools.Molexium
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Molexium shredder");
-            Tooltip.SetDefault("That wierd tip? yeah thats actually phisicaly ripping the atoms connecting the blocks apart than using a high powered ferromagnetic generator to dowse the explosion and power itself AND breath out");
+            Tooltip.SetDefault("That weird tip? \nyeah thats actually physically ripping the atoms connecting the blocks apart \nthen using a high powered ferromagnetic generator to dowse the explosion and power itself!\nAND breath out");
         }
 
         public override void SetDefaults()

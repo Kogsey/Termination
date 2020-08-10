@@ -8,7 +8,6 @@ namespace Termination.Projectiles.Luminair
 {
     public class LuminairDustProj : ModProjectile
     {
-        int dusttimer = 0;
 
         private int textureversion = Main.rand.Next(1, 3);
 
