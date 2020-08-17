@@ -26,7 +26,7 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 
 		// This value controls how sluggish the Prism turns while being used. Vanilla Last Prism is 0.08f.
 		// Higher values make the Prism turn faster.
-		private const float AimResponsiveness = 0.08f;
+		private const float AimResponsiveness = 0.1f;
 
 		// This value controls how frequently the Prism emits sound once it's firing.
 		private const int SoundInterval = 20;
@@ -58,13 +58,11 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 		{
 			// Use CloneDefaults to clone all basic projectile statistics from the vanilla Last Prism.
 			projectile.CloneDefaults(ProjectileID.LastPrism);
+			projectile.owner = mod.NPCType("ElectronicEye");
 		}
 
 		public override void AI()
 		{
-			Player player = Main.player[projectile.owner];
-			Vector2 rrp = Main.player[projectile.owner].Center;
-
 			// Update the frame counter.
 			FrameCounter += 1f;
 
@@ -73,35 +71,29 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 			PlaySounds();
 
 			// Update the Prism's position in the world and relevant variables of the player holding it.
+			UpdateVisuals(TerminationHelper.ElectronicEyeLocationBroadcast());
 
 			// Update the Prism's behavior: project beams on frame 1, consume mana, and despawn if out of mana.
-			if (projectile.owner == Main.myPlayer)
+			if (projectile.owner == mod.ProjectileType("ElectronicEye"))
 			{
 				// Slightly re-aim the Prism every frame so that it gradually sweeps to point towards the mouse.
-				UpdateAim(TerminationHelper.GiveMeTheElectronicEyesFuckingLocationAlready(), 10f);
+				UpdateAim(TerminationHelper.ElectronicEyeLocationBroadcast(), 10f);
 
-				// player.CheckMana returns true if the mana cost can be paid. Since the second argument is true, the mana is actually consumed.
-				// If mana shouldn't consumed this frame, the || operator short-circuits its evaluation player.CheckMana never executes.
+				FireBeams();
 
-				// The Prism immediately stops functioning if the player is Cursed (player.noItems) or "Crowd Controlled", e.g. the Frozen debuff.
-				// player.channel indicates whether the player is still holding down the mouse button to use the item.
-				bool stillInUse = true;
-
-				// Spawn in the Prism's lasers on the first frame if the player is capable of using the item.
-				if (stillInUse && FrameCounter == 1f)
-				{
-					FireBeams();
-				}
-
-				// If the Prism cannot continue to be used, then destroy it immediately.
-				else if (!stillInUse)
-				{
-					projectile.Kill();
-				}
 			}
 
 			// This ensures that the Prism never times out while in use.
 			projectile.timeLeft = 2;
+		}
+
+		private void UpdateVisuals(Vector2 bosslocation)
+		{
+			// Place the Prism directly into the player's hand at all times.
+			projectile.Center = bosslocation;
+			// The beams emit from the tip of the Prism, not the side. As such, rotate the sprite by pi/2 (90 degrees).
+			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
+			projectile.spriteDirection = projectile.direction;
 		}
 
 		private void UpdateAnimation()
@@ -133,29 +125,10 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 			}
 		}
 
-		private void UpdatePlayerVisuals(Player player, Vector2 playerHandPos)
-		{
-			// Place the Prism directly into the player's hand at all times.
-			projectile.Center = playerHandPos;
-			// The beams emit from the tip of the Prism, not the side. As such, rotate the sprite by pi/2 (90 degrees).
-			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
-			projectile.spriteDirection = projectile.direction;
-
-			// The Prism is a holdout projectile, so change the player's variables to reflect that.
-			// Constantly resetting player.itemTime and player.itemAnimation prevents the player from switching items or doing anything else.
-			player.ChangeDir(projectile.direction);
-			player.heldProj = projectile.whoAmI;
-			player.itemTime = 2;
-			player.itemAnimation = 2;
-
-			// If you do not multiply by projectile.direction, the player's hand will point the wrong direction while facing left.
-			player.itemRotation = (projectile.velocity * projectile.direction).ToRotation();
-		}
-
 		private void UpdateAim(Vector2 source, float speed)
 		{
 			// Get the player's current aiming direction as a normalized vector.
-			Vector2 aim = Vector2.Normalize(Main.MouseWorld - source);
+			Vector2 aim = Vector2.Normalize(TerminationHelper.ElectronicEyeTargetLocationBroadcast() - source);
 			if (aim.HasNaNs()) {
 				aim = -Vector2.UnitY;
 			}

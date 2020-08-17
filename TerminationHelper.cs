@@ -72,10 +72,16 @@ namespace Termination
             return move * (speed / (float)Math.Sqrt(move.X * move.X + move.Y * move.Y));
         }
 
-        public static Vector2 GiveMeTheElectronicEyesFuckingLocationAlready()
+        public static Vector2 ElectronicEyeLocationBroadcast()
         {
             return ElectronicEye.ElectronicEyePosition;
         }
+
+        public static Vector2 ElectronicEyeTargetLocationBroadcast()
+        {
+            return ElectronicEye.npctargetlocation;
+        }
+
 
         public static float RadtoGrad(float Rad)
         {

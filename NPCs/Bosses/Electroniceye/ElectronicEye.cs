@@ -33,9 +33,13 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         public static Vector2 ElectronicEyePosition;
 
+        public static Vector2 npctargetlocation;
+
         private float RotationSpeed = 0.025f;
         private float Rotation;
         private float distance = 300;
+
+        private Vector2 shootvel;
 
         public static float ElectronicEyeDistributePhase { get; set; }
         public static bool MaceLaunchCheck { get; set; }
@@ -319,10 +323,12 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 else if (AttackID == 2f)
                 {
                     DeathBeam();
+                    WildSpinAttack();
                 }
                 else if (AttackID == 3f)
                 {
-                    DeathBeam2();
+                    DeathBeam();
+                    WildSpinAttack();
                 }
                 else
                 {
@@ -626,26 +632,6 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         private void DeathBeam()
         {
-            IdleBehavior();
-            Vector2 shootVel = Main.player[npc.target].Center - npc.Center;
-            shootVel.Normalize();
-            shootVel *= 28f;
-            int k = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, shootVel.X, shootVel.Y, mod.ProjectileType("ElectronicEyePrismBeam"), npc.damage / 2, 5f, Main.myPlayer);
-            Main.projectile[k].friendly = false;
-            Main.projectile[k].hostile = true;
-            Main.projectile[k].scale = 1f;
-        }
-
-        private void DeathBeam2()
-        {
-            IdleBehavior();
-            Vector2 shootVel = Main.player[npc.target].Center - npc.Center;
-            shootVel.Normalize();
-            shootVel *= 28f;
-            int k = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, shootVel.X, shootVel.Y, mod.ProjectileType("ElectronicEyePrismBeam"), npc.damage / 2, 5f, Main.myPlayer);
-            Main.projectile[k].friendly = false;
-            Main.projectile[k].hostile = true;
-            Main.projectile[k].scale = 1f;
         }
 
         private void SpawnOrbs1(string whattoshoot)
