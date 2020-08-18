@@ -4,6 +4,8 @@ using System.Threading;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Termination.Projectiles;
+using Termination;
 
 namespace Termination.NPCs.Bosses.ElectronicEye
 {
@@ -632,6 +634,15 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         private void DeathBeam()
         {
+            if (timer1 <= 999)
+            {
+                int proj1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("ElectronicEyePrismGun"), npc.damage / 2, 5f, Main.myPlayer);
+                Main.projectile[proj1].friendly = false;
+                Main.projectile[proj1].hostile = true;
+
+                timer1 = 1000;
+            }
+
         }
 
         private void SpawnOrbs1(string whattoshoot)

@@ -25,7 +25,7 @@ namespace Termination.Items.Luminair
 			item.value = 10;
 			item.rare = ItemRarityID.Green;
 			item.Termination().extendedrarity = 12;
-			item.shoot = ProjectileType<Projectiles.Luminair.LuminairArrowProj>();   //The projectile shoot when your weapon using this ammo
+			item.shoot = ProjectileType<LuminairArrowProj>();   //The projectile shoot when your weapon using this ammo
 			item.ammo = AmmoID.Arrow;              //The ammo class this ammo belongs to.
 		}
 

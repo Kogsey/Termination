@@ -59,6 +59,8 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 			// Use CloneDefaults to clone all basic projectile statistics from the vanilla Last Prism.
 			projectile.CloneDefaults(ProjectileID.LastPrism);
 			projectile.owner = mod.NPCType("ElectronicEye");
+
+			projectile.timeLeft = 720;
 		}
 
 		public override void AI()

@@ -26,7 +26,7 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 		private const float MaxBeamSpread = 2f;
 
 		// The maximum possible range of the beam. Don't set this too high or it will cause significant lag.
-		private const float MaxBeamLength = 2400f;
+		private const float MaxBeamLength = 100f;
 
 		// The width of the beam in pixels for the purposes of tile collision.
 		// This should generally be left at 1, otherwise the beam tends to stop early when touching tiles.
@@ -113,11 +113,11 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 		{
 			// If something has gone wrong with either the beam or the host Prism, destroy the beam.
 			Projectile hostPrism = Main.projectile[(int)HostPrismIndex];
-			if (projectile.type != ModContent.ProjectileType<ElectronicEyePrismBeam>() || !hostPrism.active || hostPrism.type != ModContent.ProjectileType<ElectronicEyePrismGun>())
-			{
-				projectile.Kill();
-				return;
-			}
+			//if (projectile.type != ModContent.ProjectileType<ElectronicEyePrismBeam>() || !hostPrism.active || hostPrism.type != ModContent.ProjectileType<ElectronicEyePrismGun>())
+			//{
+			//	projectile.Kill();
+			//	return;
+			//}
 
 			// Grab some variables from the host Prism.
 			Vector2 hostPrismDir = Vector2.Normalize(hostPrism.velocity);
@@ -243,9 +243,9 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 			
 			// Overriding that, if the player shoves the Prism into or through a wall, the interpolation starts at the player's center.
 			// This last part prevents the player from projecting beams through walls under any circumstances.
-			Player player = Main.player[projectile.owner];
-			if (!Collision.CanHitLine(player.Center, 0, 0, prism.Center, 0, 0)) {
-				samplingPoint = player.Center;
+			if (!Collision.CanHitLine(TerminationHelper.ElectronicEyeTargetLocationBroadcast(), 0, 0, prism.Center, 0, 0))
+			{
+				samplingPoint = TerminationHelper.ElectronicEyeTargetLocationBroadcast();
 			}
 
 			// Perform a laser scan to calculate the correct length of the beam.
