@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using Termination.NPCs.Bosses.ElectronicEye;
 
 namespace Termination
 {
@@ -70,6 +71,17 @@ namespace Termination
             var move = pos2 - pos1;
             return move * (speed / (float)Math.Sqrt(move.X * move.X + move.Y * move.Y));
         }
+
+        public static Vector2 ElectronicEyeLocationBroadcast()
+        {
+            return ElectronicEye.ElectronicEyePosition;
+        }
+
+        public static Vector2 ElectronicEyeTargetLocationBroadcast()
+        {
+            return ElectronicEye.npctargetlocation;
+        }
+
 
         public static float RadtoGrad(float Rad)
         {

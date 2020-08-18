@@ -31,9 +31,15 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         public static Vector2 ballmetalcenter3;
         public static Vector2 ballmetalcenter4;
 
+        public static Vector2 ElectronicEyePosition;
+
+        public static Vector2 npctargetlocation;
+
         private float RotationSpeed = 0.025f;
         private float Rotation;
         private float distance = 300;
+
+        private Vector2 shootvel;
 
         public static float ElectronicEyeDistributePhase { get; set; }
         public static bool MaceLaunchCheck { get; set; }
@@ -165,6 +171,8 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 ballmetalcenter3 = TerminationHelper.PolarPos(npc.Center, distance, MathHelper.ToRadians(Rotation + MathHelper.PiOver2));
                 ballmetalcenter4 = TerminationHelper.PolarPos(npc.Center, distance, MathHelper.ToRadians(Rotation - MathHelper.PiOver2));
             }
+
+            ElectronicEyePosition = npc.Center;
 
             if (ElectronicEyeDistributePhase == 1)
             {
@@ -315,10 +323,12 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 else if (AttackID == 2f)
                 {
                     DeathBeam();
+                    WildSpinAttack();
                 }
                 else if (AttackID == 3f)
                 {
                     DeathBeam();
+                    WildSpinAttack();
                 }
                 else
                 {
@@ -495,6 +505,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             if (Main.netMode != NetmodeID.Server && npc.localAI[0] == 2f)
             {
                 Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
+
                 Main.NewText("MULTIPLE SYSTEM FAILURES DETECTED", 54, 0, 9);
                 Main.NewText("UNUSUAL VOLTAGES DETECTED", 54, 0, 9);
                 Main.NewText("CLOCK LEVELS IN OVERDRIVE", 54, 0, 9);
@@ -621,7 +632,6 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         private void DeathBeam()
         {
-            int proj1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 1, 1, ProjectileID.PhantasmalDeathray, npc.damage / 2, 5f, Main.myPlayer);
         }
 
         private void SpawnOrbs1(string whattoshoot)
