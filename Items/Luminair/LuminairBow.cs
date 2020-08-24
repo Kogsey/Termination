@@ -21,7 +21,7 @@ namespace Termination.Items.Luminair
             item.knockBack = 5;
             item.value = 25000;
             item.useAmmo = AmmoID.Arrow;
-            item.rare = ItemRarityID.Yellow;
+            item.rare = 10;
             item.Termination().extendedrarity = 12;
             item.UseSound = SoundID.Item5;
             item.autoReuse = true;
@@ -29,8 +29,9 @@ namespace Termination.Items.Luminair
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lumiair Bow");
-            Tooltip.SetDefault("And your enemies fell before you... \nturns wooden arrows into luminair ones");
+            DisplayName.SetDefault("Luminair Bow");
+            Tooltip.SetDefault("And your enemies fell before you..." +
+                " \nturns wooden arrows into luminair ones");
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -38,12 +39,6 @@ namespace Termination.Items.Luminair
             if (type == ProjectileID.WoodenArrowFriendly)
             {
                 type = mod.ProjectileType("LuminairArrowProj");
-            }
-
-            if (type == mod.ProjectileType("LuminairArrowProj"))
-            {
-                speedX = speedX / 5;
-                speedY = speedY / 5;
             }
 
             float numberProjectiles = 5; //5 shots
@@ -59,7 +54,7 @@ namespace Termination.Items.Luminair
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "HardenedAlloy", 1);
+            recipe.AddIngredient(null, "HardenedAlloy", 18);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

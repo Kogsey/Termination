@@ -32,11 +32,16 @@ namespace Termination.Projectiles.Luminair
         {
             projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
+            if (speedtimer == 0)
+            {
+                projectile.velocity /= 5;
+            }
+
             if (speedtimer >= 30)
             {
                 Dust.NewDust(projectile.Center, 3, 3, Terraria.ID.DustID.LunarOre, 0, 0, 0, default, 1);
                 projectile.velocity *= 2;
-                speedtimer = 0;
+                speedtimer = 1;
 
                 for (int index1 = 0; index1 < 12; ++index1)
                 {

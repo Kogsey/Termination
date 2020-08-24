@@ -1,17 +1,17 @@
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Termination.Projectiles.Luminair;
 using static Terraria.ModLoader.ModContent;
 using Termination.Items.Materials.Bars;
-using Termination.Tiles.Workplaces;
 
 namespace Termination.Items.Luminair
 {
 	public class LuminairArrow : ModItem
 	{
-		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("This is a modded bullet ammo.");
+		public override void SetStaticDefaults() 
+		{
+			Tooltip.SetDefault("Beyond speed" +
+				"\naccelerates as it flies");
 		}
 
 		public override void SetDefaults() {
@@ -23,7 +23,7 @@ namespace Termination.Items.Luminair
 			item.consumable = true;             //You need to set the item consumable so that the ammo would automatically consumed
 			item.knockBack = 1.5f;
 			item.value = 10;
-			item.rare = ItemRarityID.Green;
+			item.rare = 10;
 			item.Termination().extendedrarity = 12;
 			item.shoot = ProjectileType<LuminairArrowProj>();   //The projectile shoot when your weapon using this ammo
 			item.ammo = AmmoID.Arrow;              //The ammo class this ammo belongs to.
