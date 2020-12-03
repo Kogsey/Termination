@@ -40,7 +40,7 @@ namespace Termination.Projectiles.Luminair
             if (speedtimer >= 30)
             {
                 Dust.NewDust(projectile.Center, 3, 3, Terraria.ID.DustID.LunarOre, 0, 0, 0, default, 1);
-                projectile.velocity *= 2;
+                projectile.velocity *= 1.5;
                 speedtimer = 1;
 
                 for (int index1 = 0; index1 < 12; ++index1)
