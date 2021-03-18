@@ -346,7 +346,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         private void ChooseAttackSequence()
         {
-            AttackID += 1f;
+            AttackID = 1f;
             if (AttackID >= 7f)
             {
                 AttackID = 1f;

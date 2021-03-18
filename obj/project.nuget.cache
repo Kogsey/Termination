@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "ga2hA6oArnbO9L168pLkTTlIqfe2Rl2gORKGnTdxc1GqqK4fK0y2Ubug0tjsoXa29PICaAVmDYaXezFj1SPMIw==",
+=======
+  "dgSpecHash": "dYcnft1y6x635PMNNn2egh+t4YGpdJ9m+SbwcBio4UcLZufzmnQ0z08prdy67GNpzwUTp0nuMChqN9wyqBiVUQ==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\kad44\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Termination\\Termination.csproj",
   "expectedPackageFiles": [

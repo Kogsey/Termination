@@ -462,7 +462,12 @@
   },
   "packageFolders": {
     "C:\\Users\\kad44\\.nuget\\packages\\": {},
+<<<<<<< Updated upstream
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+=======
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+>>>>>>> Stashed changes
   },
   "project": {
     "version": "1.0.0",
@@ -474,7 +479,12 @@
       "outputPath": "C:\\Users\\kad44\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Termination\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+<<<<<<< Updated upstream
         "C:\\Microsoft\\Xamarin\\NuGet\\"
+=======
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+>>>>>>> Stashed changes
       ],
       "configFilePaths": [
         "C:\\Users\\kad44\\AppData\\Roaming\\NuGet\\NuGet.Config",
