@@ -9,6 +9,13 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 {
     public class ElectronicEyeAnchor : ModNPC
     {
+        private float maxSpeed = 50f;
+        private float timer1 = 0f;
+        private float shoottimer1 = 0f;
+        private float timeuntilteleport = 0f;
+        private bool check1 = false;
+        private bool teleportlocationcheck = false;
+        private double Healthframes = 0f;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone:Anchor Head - Head Must Survive");
@@ -105,7 +112,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 AttackID = Main.rand.Next(0, 3);
             else if (AttackID == 1)
             {
-                InnacurateLazerUp();
+                InnacurateLazerUp("ElectronicEyeBeam", Main.player[npc.target].Center);
             }
             else if (AttackID == 0)
             {
@@ -113,7 +120,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             }
         }
 
-        public static void InnacurateLazerUp()
+        private void InnacurateLazerUp(string whattoshoot, Vector2 wheretoshootit)
         {
             Healthframes = (double)npc.life / (double)npc.lifeMax * 10f;
             if (shoottimer1 >= Healthframes)
@@ -122,10 +129,10 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 Vector2 shootVel = wheretoshootit - npc.Center + new Vector2(Main.rand.NextFloat(-inaccuracy, inaccuracy), Main.rand.NextFloat(-inaccuracy, inaccuracy));
                 shootVel.Normalize();
                 shootVel *= 28f;
-                int k = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, shootVel.X, shootVel.Y, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[k].friendly = false;
-                Main.projectile[k].hostile = true;
-                Main.projectile[k].scale = 1f;
+                int i = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, shootVel.X, shootVel.Y, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
+                Main.projectile[i].friendly = false;
+                Main.projectile[i].hostile = true;
+                Main.projectile[i].scale = 1f;
                 shoottimer1 = 0;
             }
             else

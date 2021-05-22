@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,19 +10,8 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 {
     public class ElectronicEyeDrone : ModNPC
     {
-        private Vector2 dustlocation1;
-        private Vector2 dustlocation2;
-        private Vector2 dustlocation3;
-        private Vector2 dustlocation4;
-        private Vector2 teleportlocation;
-
         private float maxSpeed = 50f;
         private float timer1 = 0f;
-        private float shoottimer1 = 0f;
-        private float timeuntilteleport = 0f;
-        private bool check1 = false;
-        private bool teleportlocationcheck = false;
-        private double Healthframes = 0f;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone:Anchor Head - Head Must Survive");
@@ -31,7 +21,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 100000;
+            npc.lifeMax = 50000;
             npc.damage = 100;
             npc.defense = 50;
             npc.knockBackResist = 0f;
@@ -108,14 +98,6 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         public override void AI()
         {
-
-            if (check1 == false)
-            {
-                teleportlocation = Main.player[npc.target].Center;
-                check1 = true;
-                timeuntilteleport = 49;
-            }
-
             NPC headNPC = Main.npc[(int)npc.ai[0]];
             if (!headNPC.active || headNPC.type != mod.NPCType("ElectronicEye"))
             {
@@ -123,45 +105,18 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 return;
             }
             npc.timeLeft = headNPC.timeLeft;
-            npc.direction = (int)Direction;
-            npc.spriteDirection = (int)Direction;
+
             if (!npc.HasValidTarget)
             {
                 npc.TargetClosest(false);
             }
 
-            if (timer1 <= 60)
-            {
-                TP();
-                if (teleportlocationcheck == false)
-                {
-                    teleportlocation = Main.player[npc.target].Center;
-                    teleportlocationcheck = true;
-                }
-            }
-            if (timer1 <= 0)
-            {
-                timeuntilteleport = 49;
-                timer1 = 300;
-                teleportlocationcheck = false;
-            }
-            else
-            {
-                timer1--;
-            }
+            npc.position = new Vector2(Main.player[npc.target].Center.X - npc.width / 2, Main.player[npc.target].Center.Y - 200);
 
-            if (timer1 >= 30 && timer1 <= 90)
+            AttackTimer++;
+            if (AttackTimer % 120 == 0)
             {
-                Lazer("ElectronicEyeBeam", Main.player[npc.target].Center);
-            }
-            else
-            {
-                shoottimer1++;
-            }
-
-            if (Healthframes == -100)
-            {
-                Spin();
+                Lazer("ElectronicEyeThornBall", Main.player[npc.target].Center);
             }
         }
 
@@ -179,36 +134,10 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         private void Lazer(string whattoshoot, Vector2 wheretoshootit)
         {
-            Healthframes = (double)npc.life / (double)npc.lifeMax * 10f;
-            if (shoottimer1 >= Healthframes)
-            {
-                float inaccuracy = 3f * (npc.life / npc.lifeMax);
-                Vector2 shootVel = wheretoshootit - npc.Center + new Vector2(Main.rand.NextFloat(-inaccuracy, inaccuracy), Main.rand.NextFloat(-inaccuracy, inaccuracy));
-                shootVel.Normalize();
-                shootVel *= 28f;
-                int k = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, shootVel.X, shootVel.Y, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
-                Main.projectile[k].friendly = false;
-                Main.projectile[k].hostile = true;
-                Main.projectile[k].scale = 1f;
-                shoottimer1 = 0;
-            }
-            else
-            {
-                shoottimer1 += 1;
-            }
-        }
-
-        public void TP()
-        {
-            if (timeuntilteleport <= 0)
-            {
-                npc.position = teleportlocation;
-            }
-            else
-            {
-                CreateDust(teleportlocation);
-            }
-            timeuntilteleport--;
+            int k = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, mod.ProjectileType(whattoshoot), npc.damage / 2, 5f, Main.myPlayer);
+            Main.projectile[k].friendly = false;
+            Main.projectile[k].hostile = true;
+            Main.projectile[k].scale = 1f;
         }
 
         private void ModifyVelocity(Vector2 modify, float weight = 0.05f)
@@ -227,21 +156,17 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         public virtual void CreateDust(Vector2 dustlocation)
         {
+            
             Dust.NewDust(dustlocation, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
+            List<Vector2> vectors = new List<Vector2>();
+            for(int i = -1; i <= 1; i += 2)
+            {
+                for (int j = -1; j <= 1; j += 2)
+                    vectors.Add(new Vector2(dustlocation.X + (float)(i * Main.rand.Next(1, 50)), dustlocation.Y + (float)(j * Main.rand.Next(1, 50))));
+            }
 
-            dustlocation1.X = dustlocation.X + Main.rand.Next(1, 50);
-            dustlocation1.Y = dustlocation.Y + Main.rand.Next(1, 50);
-            dustlocation2.X = dustlocation.X - Main.rand.Next(1, 50);
-            dustlocation2.Y = dustlocation.Y - Main.rand.Next(1, 50);
-            dustlocation3.X = dustlocation.X + Main.rand.Next(1, 50);
-            dustlocation3.Y = dustlocation.Y - Main.rand.Next(1, 50);
-            dustlocation4.X = dustlocation.X - Main.rand.Next(1, 50);
-            dustlocation4.Y = dustlocation.Y + Main.rand.Next(1, 50);
-
-            Dust.NewDust(dustlocation1, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
-            Dust.NewDust(dustlocation2, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
-            Dust.NewDust(dustlocation3, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
-            Dust.NewDust(dustlocation4, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
+            foreach (Vector2 v in vectors)
+                Dust.NewDust(v, npc.width, npc.height, mod.DustType("MotherSpark"), 0f, 0f, 1, default, 1f);
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -8,7 +8,7 @@ namespace Termination.Items.Placeable.Workplaces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Electric Heated Furnace");
-            Tooltip.SetDefault("uses power to craft");
+            Tooltip.SetDefault("Uses power to craft");
         }
 
         public override void SetDefaults()

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.accessories.MechSuit.T2
+namespace Termination.Items.Accessories.MechSuit.T2
 {
     public class Goggles : ModItem
     {

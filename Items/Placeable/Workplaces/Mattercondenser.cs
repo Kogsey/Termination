@@ -7,7 +7,7 @@ namespace Termination.Items.Placeable.Workplaces
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Finaly a way to force Powerfull ores into any shape I please");
+            Tooltip.SetDefault("Finally a way to force Powerful ores into any shape I please.");
         }
 
         public override void SetDefaults()

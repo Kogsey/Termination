@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.accessories.MechSuit.T3
+namespace Termination.Items.Accessories.MechSuit.T3
 {
     public class EnTreaders2 : ModItem
     {

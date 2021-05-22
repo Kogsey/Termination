@@ -9,7 +9,7 @@ namespace Termination.Items.Materials.Misc
         {
             DisplayName.SetDefault("Moon Lord's Power");
             Tooltip.SetDefault("the moon lord's quite impressive power"
-            + "in convienient bottled form");
+            + " in convenient bottled form");
         }
 
         public override void SetDefaults()

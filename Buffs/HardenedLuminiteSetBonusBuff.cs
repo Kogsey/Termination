@@ -1,4 +1,4 @@
-using Termination.Projectiles.BuffProj;
+using Termination.Projectiles.BuffProjectiles;
 using Terraria;
 using Terraria.ModLoader;
 

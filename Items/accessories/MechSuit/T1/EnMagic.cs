@@ -3,16 +3,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.accessories.MechSuit.T1
+namespace Termination.Items.Accessories.MechSuit.T1
 {
     public class EnMagic : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Band of Magic");
-            Tooltip.SetDefault("Increses mana regen twice as mutch as the band of mana regeneration" +
-                               "plus 40 mana" +
-                               "1 defence");
+            Tooltip.SetDefault("Increases mana regeneration twice as much as the band of mana regeneration\n" +
+                               "plus 40 mana\n" +
+                               "1 defense");
         }
 
         public override void SetDefaults()

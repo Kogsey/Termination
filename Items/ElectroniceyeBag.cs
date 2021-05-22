@@ -32,15 +32,14 @@ namespace Termination.Items
         public override void OpenBossBag(Player player)
         {
             player.TryGettingDevArmor();
-            player.QuickSpawnItem(mod.ItemType("BallOMetal"));
-            switch (Main.rand.Next(4))
+            switch (Main.rand.Next(2))
             {
                 case 0:
-                    _ = mod.ItemType("NanabotSwarm");
+                    player.QuickSpawnItem(mod.ItemType("ElectronicDrone"));
                     break;
 
                 case 1:
-                    _ = mod.ItemType("OrbBoomerang");
+                    player.QuickSpawnItem(mod.ItemType("BallOMetal"));
                     break;
 
                 case 2:

@@ -8,7 +8,7 @@ namespace Termination.Items.Materials.Bars
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Araaxium Bar");
-            Tooltip.SetDefault("Not a really usefull item but can be used"
+            Tooltip.SetDefault("Not a really useful item but could have uses\n"
             + "conductive");
         }
 

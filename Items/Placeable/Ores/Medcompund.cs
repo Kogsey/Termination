@@ -11,7 +11,7 @@ namespace Termination.Items.Placeable.Ores
         {
             DisplayName
             .SetDefault("Medium density compund");
-            Tooltip.SetDefault("Exactly what it says on the tin it's slightly unstable but we should be good");
+            Tooltip.SetDefault("Exactly what it says on the tin, it's slightly unstable but should safe.");
         }
 
         public override void SetDefaults()

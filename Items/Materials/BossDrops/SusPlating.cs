@@ -8,8 +8,8 @@ namespace Termination.Items.Materials.BossDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hardened Luminite plating");
-            Tooltip.SetDefault("seems to be impossible to forge and yet here it is"
-            + "could be mixed with something weaker");
+            Tooltip.SetDefault("Seems to be impossible to forge and yet here it is.\n"
+            + "Could be mixed with something weaker.");
         }
 
         public override void SetDefaults()

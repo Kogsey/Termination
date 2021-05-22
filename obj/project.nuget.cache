@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< Updated upstream
-  "dgSpecHash": "ga2hA6oArnbO9L168pLkTTlIqfe2Rl2gORKGnTdxc1GqqK4fK0y2Ubug0tjsoXa29PICaAVmDYaXezFj1SPMIw==",
-=======
-  "dgSpecHash": "dYcnft1y6x635PMNNn2egh+t4YGpdJ9m+SbwcBio4UcLZufzmnQ0z08prdy67GNpzwUTp0nuMChqN9wyqBiVUQ==",
->>>>>>> Stashed changes
+  "dgSpecHash": "KuTDo8VEEamTF7mPv0xWDwlJ3HuiG1f438kPady6nr2tL9EYpppk1FNUkZAvB0Qk+C+lrgwIfZiQUs8OiKWH1Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\kad44\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Termination\\Termination.csproj",
   "expectedPackageFiles": [
@@ -13,7 +9,14 @@
     "C:\\Users\\kad44\\.nuget\\packages\\microsoft.codequality.analyzers\\2.9.6\\microsoft.codequality.analyzers.2.9.6.nupkg.sha512",
     "C:\\Users\\kad44\\.nuget\\packages\\microsoft.netcore.analyzers\\2.9.6\\microsoft.netcore.analyzers.2.9.6.nupkg.sha512",
     "C:\\Users\\kad44\\.nuget\\packages\\microsoft.netframework.analyzers\\2.9.6\\microsoft.netframework.analyzers.2.9.6.nupkg.sha512",
-    "C:\\Users\\kad44\\.nuget\\packages\\tmodloader.codeassist\\0.1.1\\tmodloader.codeassist.0.1.1.nupkg.sha512"
+    "C:\\Users\\kad44\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\kad44\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Termination\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

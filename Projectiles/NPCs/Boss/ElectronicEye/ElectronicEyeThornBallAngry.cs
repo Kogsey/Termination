@@ -22,8 +22,8 @@ namespace Termination.Projectiles.NPCs.Boss.ElectronicEye
 
         public override void SetDefaults()
         {
-            projectile.width = 64;               //The width of projectile hit-box
-            projectile.height = 64;              //The height of projectile hit-box
+            projectile.width = 32;               //The width of projectile hitbox
+            projectile.height = 32;               //The height of projectile hit-box
             projectile.aiStyle = -1;             //The AI style of the projectile, please reference the source code of Terraria
             projectile.friendly = false;         //Can the projectile deal damage to enemies?
             projectile.hostile = true;         //Can the projectile deal damage to the player?

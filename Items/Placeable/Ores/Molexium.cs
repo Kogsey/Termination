@@ -11,7 +11,8 @@ namespace Termination.Items.Placeable.Ores
         {
             DisplayName
             .SetDefault("Molexium Ore");
-            Tooltip.SetDefault("holding it feels like your arms are going to fall off! probably useless unless combined with something lighter");
+            Tooltip.SetDefault("Holding it feels like your arms are going to fall off!\n" +
+                "Probably useless unless combined with something lighter.");
         }
 
         public override void SetDefaults()

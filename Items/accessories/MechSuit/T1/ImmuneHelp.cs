@@ -3,15 +3,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.accessories.MechSuit.T1
+namespace Termination.Items.Accessories.MechSuit.T1
 {
     public class ImmuneHelp : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Healing Nanobot Mix");
-            Tooltip.SetDefault("Increses life regen" +
-                               "Makes you immune to enemy nanobots");
+            DisplayName.SetDefault("Healing Nano-bot Mix");
+            Tooltip.SetDefault("Increases life regeneration\n" +
+                               "Makes you immune to enemy nano-bots");
         }
 
         public override void SetDefaults()

@@ -1,14 +1,14 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.Materials.Orematerials
+namespace Termination.Items.Materials.OreMaterials
 {
     public class Araaxiumwire : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Araaxium Wire");
-            Tooltip.SetDefault("highly conductive wire");
+            Tooltip.SetDefault("Highly conductive wire");
         }
 
         public override void SetDefaults()

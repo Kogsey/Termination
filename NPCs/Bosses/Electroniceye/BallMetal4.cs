@@ -20,7 +20,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 50000;
+            npc.lifeMax = 25000;
             npc.damage = 100;
             npc.defense = 50;
             npc.knockBackResist = 0f;
@@ -54,47 +54,6 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 return (ElectronicEye)Main.npc[(int)npc.ai[0]].modNPC;
             }
         }
-
-        public float Direction
-        {
-            get
-            {
-                return npc.ai[1];
-            }
-        }
-
-        public float AttackID
-        {
-            get
-            {
-                return npc.ai[2];
-            }
-            set
-            {
-                npc.ai[2] = value;
-            }
-        }
-
-        public float AttackTimer
-        {
-            get
-            {
-                return npc.ai[3];
-            }
-            set
-            {
-                npc.ai[3] = value;
-            }
-        }
-
-        public float MaxAttackTimer
-        {
-            get
-            {
-                return 60f + 120f * (float)Head.npc.life / (float)Head.npc.lifeMax;
-            }
-        }
-
         public override void AI()
         {
             NPC headNPC = Main.npc[(int)npc.ai[0]];
@@ -109,20 +68,25 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 npc.TargetClosest(false);
             }
 
-            if (ElectronicEye.ElectronicEyeDistributePhase <= 1)
+            if (Head.ElectronicEyeDistributePhase <= 1)
             {
                 Spin();
             }
-            else if (ElectronicEye.ElectronicEyeDistributePhase == 2)
+            else if (Head.ElectronicEyeDistributePhase == 2)
             {
                 Mace();
+            }
+            else if (Head.ElectronicEyeDistributePhase == 3)
+            {
+                Spin();
+                npc.dontTakeDamage = false;
             }
         }
 
         private void Spin()
         {
-            npc.Center = ElectronicEye.ballmetalcenter4;
-            npc.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
+            npc.Center = Head.BallMetalCenters[3];
+            npc.rotation = TerminationUtils.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
         }
 
         private void Mace()
@@ -130,8 +94,8 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             timer1++;
             if (timer1 >= 120)
             {
-                Vector2 target = ElectronicEye.ballmetalcenter4;
-                npc.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
+                Vector2 target = Head.BallMetalCenters[3];
+                npc.rotation = TerminationUtils.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
                 Vector2 shootVel = target - npc.Center;
                 shootVel.Normalize();
                 shootVel *= 5f;
@@ -189,6 +153,10 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         {
             return texture.Height;
         }
+        public override void DrawBehind(int index)
+        {
+            base.DrawBehind(index);
+        }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
@@ -222,6 +190,12 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 }
             }
             return true;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            spriteBatch.Draw(Main.npcTexture[Head.npc.type], Head.npc.Center - Main.screenPosition + new Vector2(0, Head.npc.gfxOffY), Head.npc.frame,
+                             Color.White, Head.npc.rotation, Head.npc.frame.Size() / 2, Head.npc.scale, SpriteEffects.None, 1f);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Termination.Items.Placeable.Workplaces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Intricate Work Station");
-            Tooltip.SetDefault("Intricate:very complicated or detailed, I think this applies");
+            Tooltip.SetDefault("Intricate: very complicated or detailed; I think this applies.");
         }
 
         public override void SetDefaults()

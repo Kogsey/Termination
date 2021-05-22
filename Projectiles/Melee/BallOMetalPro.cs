@@ -33,8 +33,8 @@ namespace Termination.Projectiles.Melee
         public override void AI()
         {
             Rotation += RotationSpeed;
-            projectile.Center = TerminationHelper.PolarPos(Main.player[(int)projectile.ai[0]].Center, Distanse, MathHelper.ToRadians(Rotation));
-            projectile.rotation = TerminationHelper.RotateBetween2Points(Main.player[(int)projectile.ai[0]].Center, projectile.Center) - MathHelper.ToRadians(90);
+            projectile.Center = TerminationUtils.PolarPos(Main.player[(int)projectile.ai[0]].Center, Distanse, MathHelper.ToRadians(Rotation));
+            projectile.rotation = TerminationUtils.RotateBetween2Points(Main.player[(int)projectile.ai[0]].Center, projectile.Center) - MathHelper.ToRadians(90);
         }
 
         public override bool? CanHitNPC(NPC target)

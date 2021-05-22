@@ -7,8 +7,8 @@ namespace Termination
     public class TerminationPlayer : ModPlayer
     {
         public bool Nanobot = false;
-
         public bool HardenedLuminiteSetBonus = false;
+        public bool ElectronicDrone = false;
 
         public static TerminationPlayer ModPlayer(Player player)
         {
@@ -23,7 +23,7 @@ namespace Termination
         {
             ResetVariables();
             Nanobot = false;
-
+            ElectronicDrone = false;
             HardenedLuminiteSetBonus = false;
         }
 
@@ -31,7 +31,7 @@ namespace Termination
         {
             ResetVariables();
             Nanobot = false;
-
+            ElectronicDrone = false;
             HardenedLuminiteSetBonus = false;
         }
 

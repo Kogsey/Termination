@@ -16,7 +16,7 @@ namespace Termination
             {
                 tasks.Insert(ShiniesIndex + 1, new PassLegacy("Molexium", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "Molexium";
+                    progress.Message = "Seeding stronger alloys";
 
                     for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++)
                     {
@@ -26,7 +26,7 @@ namespace Termination
 
                 tasks.Insert(ShiniesIndex + 1, new PassLegacy("Araaxium", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "Araaxium";
+                    progress.Message = "Seeding stronger alloys";
 
                     for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++)
                     {
@@ -36,7 +36,7 @@ namespace Termination
 
                 tasks.Insert(ShiniesIndex + 1, new PassLegacy("Sirenium", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "Sirenium";
+                    progress.Message = "Seeding stronger alloys";
 
                     for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++)
                     {

@@ -63,7 +63,7 @@ namespace Termination.NPCs.Mechs
             int x = spawnInfo.spawnTileX;
             int y = spawnInfo.spawnTileY;
             int tile = (int)Main.tile[x, y].type;
-            return (Termination.NoZoneAllowWater(spawnInfo)) && !Main.dayTime && spawnInfo.spawnTileY < Main.worldSurface ? 0.1f : 0f;
+            return (Termination.NoZoneAllowWater(spawnInfo)) && NPC.downedMechBossAny && !Main.dayTime && spawnInfo.spawnTileY < Main.worldSurface ? 0.1f : 0f;
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)

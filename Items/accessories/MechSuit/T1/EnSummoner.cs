@@ -3,16 +3,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Termination.Items.accessories.MechSuit.T1
+namespace Termination.Items.Accessories.MechSuit.T1
 {
     public class EnSummoner : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Band of Summoner");
-            Tooltip.SetDefault("Increses life regen twice as mutch as the band of regeneration" +
-                               "makes you immune to poisen" +
-                               "2 defence");
+            DisplayName.SetDefault("Band of the Summoner");
+            Tooltip.SetDefault("Increases life regeneration twice as much as the band of regeneration\n" +
+                               "makes you immune to poison\n" +
+                               "2 defense");
         }
 
         public override void SetDefaults()

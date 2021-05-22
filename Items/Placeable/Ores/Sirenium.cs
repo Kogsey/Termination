@@ -11,7 +11,8 @@ namespace Termination.Items.Placeable.Ores
         {
             DisplayName
             .SetDefault("Sirenium Ore");
-            Tooltip.SetDefault("so light it slightly pulls you upwards, probably useless unless combined with something heavier");
+            Tooltip.SetDefault("So light it slightly pulls you upwards.\n" +
+                "Probably useless unless combined with something heavier.");
         }
 
         public override void SetDefaults()
