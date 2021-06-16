@@ -25,8 +25,8 @@ namespace Termination.Projectiles.Summon
 		public override void SetDefaults() 
 		{
 			projectile.netImportant = true;
-			projectile.width = 32;
-			projectile.height = 32;
+			projectile.width = 48;
+			projectile.height = 48;
 			projectile.friendly = true;
 			projectile.minion = true;
 			projectile.minionSlots = 1;
@@ -85,7 +85,7 @@ namespace Termination.Projectiles.Summon
 			if (projectile.frameCounter >= 8)
 			{
 				projectile.frameCounter = 0;
-				projectile.frame = (projectile.frame + 1) % 3;
+				projectile.frame = (projectile.frame + 1) % 2;
 			}
 		}
 	}

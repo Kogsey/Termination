@@ -58,8 +58,8 @@ namespace Termination.Projectiles.BuffProjectiles
             }
 
             Rotation += RotationSpeed;
-            projectile.Center = TerminationUtils.PolarPos(Main.player[(int)projectile.ai[0]].Center, distance, MathHelper.ToRadians(Rotation));
-            projectile.rotation = (float)(-1 * (TerminationUtils.RotateBetween2Points(Main.player[(int)projectile.ai[0]].Center, projectile.Center) - MathHelper.ToRadians(90)));
+            projectile.Center = TerminationUtils.PolarPos(Main.player[(int)projectile.ai[0]].Center, distance, Rotation);
+            projectile.rotation = (float)(-1 * (TerminationUtils.RotateBetween2Points(Main.player[(int)projectile.ai[0]].Center, projectile.Center) - MathHelper.PiOver2));
 
             if (Main.player[(int)projectile.ai[0]].HasBuff(ModContent.BuffType<HardenedLuminiteSetBonusBuff>()) == true)
             {

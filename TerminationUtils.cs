@@ -160,8 +160,8 @@ namespace Termination
         public static Vector2 PolarPos(Vector2 Point, float Distance, float Angle, int XOffset = 0, int YOffset = 0)
         {
             var ReturnedValue = new Vector2();
-            ReturnedValue.X = (Distance * (float)Math.Sin((double)TerminationUtils.RadtoGrad(Angle)) + Point.X) + XOffset;
-            ReturnedValue.Y = (Distance * (float)Math.Cos((double)TerminationUtils.RadtoGrad(Angle)) + Point.Y) + YOffset;
+            ReturnedValue.X = (Distance * (float)Math.Sin(Angle) + Point.X) + XOffset;
+            ReturnedValue.Y = (Distance * (float)Math.Cos(Angle) + Point.Y) + YOffset;
             return ReturnedValue;
         }
 

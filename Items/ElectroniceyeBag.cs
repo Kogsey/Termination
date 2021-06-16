@@ -32,7 +32,7 @@ namespace Termination.Items
         public override void OpenBossBag(Player player)
         {
             player.TryGettingDevArmor();
-            switch (Main.rand.Next(2))
+            switch (Main.rand.Next(4))
             {
                 case 0:
                     player.QuickSpawnItem(mod.ItemType("ElectronicDrone"));
@@ -43,11 +43,11 @@ namespace Termination.Items
                     break;
 
                 case 2:
-                    _ = mod.ItemType("ElectronicEyeMount");
+                    player.QuickSpawnItem(mod.ItemType("ElectronicDrone"));
                     break;
 
                 case 3:
-                    _ = mod.ItemType("reprogrammedBoss1");
+                    player.QuickSpawnItem(mod.ItemType("DamagedControlCircuit"));
                     break;
             }
         }

@@ -10,14 +10,16 @@ namespace Termination.Items.Weapons.Summon
 {
 	public class DamagedControlCircuit : ModItem
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			DisplayName.SetDefault("Damaged control circuit");
 			Tooltip.SetDefault("Held together by lint and barely working, but work it does");
 			ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			item.damage = 110;
 			item.summon = true;
 			item.mana = 10;
@@ -35,9 +37,11 @@ namespace Termination.Items.Weapons.Summon
 			item.buffType = BuffType<ElectronicDroneBuff>(); //The buff added to player after used the item
 		}
 
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		{
 			player.AddBuff(item.buffType, 2);
 			position = Main.MouseWorld;
+			damage = item.damage;
 			return true;
 		}
 	}

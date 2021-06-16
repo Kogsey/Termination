@@ -26,6 +26,9 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         private float timer2;
         private float breakDownTimer = -1f;
 
+        private float RotationMultiplier = 1f;
+
+        public bool Boolean1;
         private float angle;
         private float randomTimer;
 
@@ -37,6 +40,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         private List<float> targetDistance = new List<float>();
         private List<bool> isRising = new List<bool>();
 
+        public List<BallMetal> BallMetals = new List<BallMetal>(4);
         public float ElectronicEyeDistributePhase { get; private set; }
         public bool MaceLaunchCheck { get; private set; }
 
@@ -161,8 +165,6 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                     Phase = 2f;
             }
 
-            UpdatePeripheralPositions();
-
             if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
             {
                 // Filters.Scene.Activate("ElectronicEyeEffect");
@@ -181,6 +183,9 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 PhaseTwoAttacks();
             else if (Phase == 3f)
                 PhaseThreeAttacks();
+
+            UpdatePeripheralPositions();
+
 
             if (!npc.HasValidTarget)
             {
@@ -222,25 +227,32 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             {
                 case 0f:
                     IdleBehavior();
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 1f:
                     AttackTimer -= 1;
                     TeleportAttack();
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 2f:
                     SpawnOrbs1("ElectronicEyeThornBall");
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 3f:
                     MaceAttack();
+                    ElectronicEyeDistributePhase = 2;
                     break;
                 case 4f:
                     SpawnOrbs2("ElectronicEyeOrb");
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 5f:
                     LaserAttack();
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 6f:
                     WildSpinAttack();
+                    ElectronicEyeDistributePhase = 1;
                     break;
             }
 
@@ -256,25 +268,32 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             {
                 case 0f:
                     WildSpinAttack();
+                    ElectronicEyeDistributePhase = 1;
                     break;
                 case 1f:
                     TeleportAttack();
                     AttackTimer -= 1;
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 2f:
                     SpawnOrbs3("ElectronicEyeThornBall");
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 3f:
                     MaceAttack();
+                    ElectronicEyeDistributePhase = 2;
                     break;
                 case 4f:
                     SpawnOrbs2("ElectronicEyeOrb");
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 5f:
                     LaserAttack();
+                    ElectronicEyeDistributePhase = 0;
                     break;
                 case 6f:
                     WildSpinAttack();
+                    ElectronicEyeDistributePhase = 1;
                     break;
             }
 
@@ -327,6 +346,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             AttackTimer = 0f;
             npc.TargetClosest(false);
             npc.netUpdate = true;
+            Boolean1 = false;
         }
 
         private void ChooseAttackSemiRandom(int min, int max)
@@ -339,6 +359,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             AttackTimer = 0f;
             npc.TargetClosest(false);
             npc.netUpdate = true;
+            Boolean1 = false;
         }
 
         private void ChooseAttackRandom(int min, int max)
@@ -347,6 +368,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             AttackTimer = -1f;
             npc.TargetClosest(false);
             npc.netUpdate = true;
+            Boolean1 = false;
         }
 
         private void CheckDrones()
@@ -360,38 +382,36 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             }
             else
             {
-                if (NPC.AnyNPCs(mod.NPCType("BallMetal")) == true || NPC.AnyNPCs(mod.NPCType("BallMetal2")) == true || NPC.AnyNPCs(mod.NPCType("BallMetal3")) == true || NPC.AnyNPCs(mod.NPCType("BallMetal4")) == true)
-                {
+                if (NPC.AnyNPCs(mod.NPCType("BallMetal")) == true)
                     npc.dontTakeDamage = true;
-                }
                 else
-                {
                     npc.dontTakeDamage = false;
-                }
             }
 
             if (Phase != 3)
             {
-                if (NPC.AnyNPCs(mod.NPCType("BallMetal")) == false)
-                {
-                    int spawnX = (int)npc.Center.X;
-                    int spawnY = (int)npc.Center.Y + 64;
-                    int left = NPC.NewNPC(spawnX - 128, spawnY, mod.NPCType("BallMetal"), 0, npc.whoAmI);
-                    npc.netUpdate = true;
-
-                    Main.npc[left].netUpdate = true;
-                }
-
-                if (NPC.AnyNPCs(mod.NPCType("BallMetal2")) == false)
-                {
-                    int spawnX = (int)npc.Center.X;
-                    int spawnY = (int)npc.Center.Y + 64;
-                    int right = NPC.NewNPC(spawnX + 128, spawnY, mod.NPCType("BallMetal2"), 0, npc.whoAmI);
-                    npc.netUpdate = true;
-
-                    Main.npc[right].netUpdate = true;
-                }
+                if (!CheckBallLoaded(0))
+                    RespawnBall(0);
+                if (!CheckBallLoaded(2))
+                    RespawnBall(2);
             }
+        }
+        public void RespawnBall(int i)
+        {
+            int j = NPC.NewNPC(0, 0, mod.NPCType("BallMetal"), 0, npc.whoAmI, i);
+            npc.netUpdate = true;
+            Main.npc[j].netUpdate = true;
+        }
+        public bool CheckBallLoaded(int i)
+        {
+            if (BallMetals[i] == null)
+                return false;
+            else if (!BallMetals[i].CheckWorking())
+            {
+                BallMetals[i] = null;
+                return false;
+            }
+            return true;
         }
 
         private void Initialize()
@@ -402,37 +422,17 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 AttackID = 0f;
                 npc.netUpdate = true;
 
-                BallMetalCenters = new List<Vector2>();
-                BallMetalCenters.Add(Vector2.Zero);
-                BallMetalCenters.Add(Vector2.Zero);
-                BallMetalCenters.Add(Vector2.Zero);
-                BallMetalCenters.Add(Vector2.Zero);
+                for (int i = -1; i < 3; i++)
+                {
+                    BallMetalCenters.Add(Vector2.Zero);
+                    distance.Add(300);
+                    targetDistance.Add(20);
+                    rotationSpeed.Add(0.025f);
+                    isRising.Add(false);
+                    rotation.Add(i * MathHelper.PiOver2);
 
-                rotation = new List<float>();
-                rotation.Add(0);
-                rotation.Add(rotation[0] + MathHelper.Pi);
-                rotation.Add(rotation[0] + MathHelper.PiOver2);
-                rotation.Add(rotation[0] - MathHelper.PiOver2);
-
-                distance.Add(300);
-                distance.Add(distance[0]);
-                distance.Add(distance[0]);
-                distance.Add(distance[0]);
-
-                targetDistance.Add(20);
-                targetDistance.Add(20);
-                targetDistance.Add(20);
-                targetDistance.Add(20);
-
-                rotationSpeed.Add(0.025f);
-                rotationSpeed.Add(rotationSpeed[0]);
-                rotationSpeed.Add(rotationSpeed[0]);
-                rotationSpeed.Add(rotationSpeed[0]);
-
-                isRising.Add(false);
-                isRising.Add(false);
-                isRising.Add(false);
-                isRising.Add(false);
+                    BallMetals.Add(null);
+                }
 
                 initCheck1 = true;
             }
@@ -466,7 +466,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             if (Main.netMode != NetmodeID.Server && npc.localAI[0] == 1f)
             {
                 Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
-                Main.NewText("SIGNIFICANT DAMAGE SUSTAINED: SETTING BOOLEAN PROTOCAL <LimitReactor> TO FALSE", 87, 49, 49);
+                Main.NewText("SIGNIFICANT DAMAGE SUSTAINED: SETTING BOOLEAN VARIABLE <LimitReactor> TO FALSE", 87, 49, 49);
                 Main.NewText("DESTROY!!!", 87, 49, 49);
 
                 phase2Check2 = true;
@@ -485,15 +485,9 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 AttackTimer = 0;
                 npc.velocity.X = 0;
                 npc.velocity.Y = 0;
-                
-                int spawnX = (int)npc.Center.X;
-                int spawnY = (int)npc.Center.Y + 64;
-                int left = NPC.NewNPC(spawnX - 128, spawnY, mod.NPCType("BallMetal3"), 0, npc.whoAmI);
-                Main.npc[left].netUpdate = true;
-                int right = NPC.NewNPC(spawnX + 128, spawnY, mod.NPCType("BallMetal4"), 0, npc.whoAmI);
-                Main.npc[right].netUpdate = true;
 
-                Main.npc[left].netUpdate = true;
+                RespawnBall(1);
+                RespawnBall(3);
 
                 ElectronicEyeDistributePhase = 3;
 
@@ -518,26 +512,60 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         private void Phase3Cinematics()
         {
-            if (breakDownTimer == 180)
-                Main.NewText("UNUSUALLY VOLTAGES DETECTED", 54, 0, 9);
-            else if (breakDownTimer == 160)
-                Main.NewText("CLOCK LEVELS IN OVERDRIVE", 54, 0, 9);
-            else if (breakDownTimer == 140)
-                Main.NewText("POWER UNSTABLE", 54, 0, 9);
-            else if (breakDownTimer == 120)
-                Main.NewText("UNAUTHORISED OVERCLOCKING", 54, 0, 9);
-            else if (breakDownTimer == 100)
-                Main.NewText("SUBSYSTEMS BURNING", 54, 0, 9);
-            else if (breakDownTimer == 50)
-                Main.NewText("ENABLING CLOSED SHELL - RETRACT AND PROTECT", 54, 0, 9);
-            else if (breakDownTimer == 0)
+            switch (breakDownTimer)
             {
-                Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
-                Main.NewText("O V E R   L O A D I N G", 255, 0, 0);
+                case 180:
+                    Main.NewText("UNUSUAL VOLTAGES DETECTED", 54, 0, 9);
+                    break;
+
+                case 160:
+                    Main.NewText("POWER LEVELS UNSTABLE", 54, 0, 9);
+                    break;
+
+                case 140:
+                    Main.NewText("SYSTEM CLOCK MISTIME DETECTED", 54, 0, 9);
+                    break;
+
+                case 120:
+                    Main.NewText("UNAUTHORISED OVERCLOCKING", 54, 0, 9);
+                    break;
+
+                case 100:
+                    Main.NewText("MULTIPLE MEMORY ERRORS DETECTED", 54, 0, 9);
+                    break;
+
+                case 50:
+                    Main.NewText("EMERGENCY PROCEDURE; ENABLING CLOSED SHELL - RETRACT AND PROTECT", 54, 0, 9);
+                    break;
+
+                case 0:
+                    Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
+                    Main.NewText("O V E R   L O A D I N G", 255, 0, 0);
+                    break;
             }
             breakDownTimer--;
         }
 
+        public override bool CheckDead()
+        {
+            Main.PlaySound(SoundID.NPCDeath22, (int)npc.position.X, (int)npc.position.Y);
+            Main.NewText("P R I M A R Y   S Y S T E M   F A I L U R E", 128, 0, 0);
+            Main.NewText("N A N I T E   C L U S T E R   D I S P E R S I N G", 128, 0, 0);
+            SpawnDeathParticles();
+            return true;
+        }
+
+        //nanite cluster dispersing
+
+        public void SpawnDeathParticles()
+        {
+            int MaxCounter = Main.rand.Next(100, 150);
+            for (int i = 0; i < MaxCounter; i++)
+            {
+                Vector2 dustLocation = new Vector2(npc.position.X + Main.rand.NextFloat(-100, 100), npc.position.Y + Main.rand.NextFloat(-100, 100));
+                Dust.NewDust(dustLocation, npc.width, npc.height, mod.DustType("MotherSpark"), 10f + Main.rand.NextFloat(1f, 5f), -10f - Main.rand.NextFloat(5f, 10f), 1, Color.Black, 2f);
+            }
+        }
         private void RandomMovement()
         {
             maxSpeed = 10f;
@@ -684,15 +712,17 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         }
         private void MaceAttack()
         {
-            ElectronicEyeDistributePhase = 2;
-
+            if (!Boolean1)
+            {
+                Boolean1 = true;
+                RotationMultiplier *= -1f;
+            }
             npc.velocity.X = 0;
             npc.velocity.Y = 0;
         }
 
         private void IdleBehavior()
         {
-            ElectronicEyeDistributePhase = 0;
             maxSpeed = 5f;
 
             Vector2 offset = npc.Center - Main.player[npc.target].Center;
@@ -709,8 +739,6 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         {
             npc.velocity.X = 0;
             npc.velocity.Y = 0;
-
-            ElectronicEyeDistributePhase = 0;
 
             if (AttackTimer <= 179)
             {
@@ -929,7 +957,6 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 
         private void WildSpinAttack()
         {
-            ElectronicEyeDistributePhase = 1;
             maxSpeed = 15f;
 
             Vector2 offset = npc.Center - Main.player[npc.target].Center;
@@ -1035,7 +1062,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 switch (Main.rand.Next(4))
                 {
                     case 0:
-                        reward = mod.ItemType("PhantomBlade");
+                        reward = mod.ItemType("DamagedControlCircuit");
                         break;
 
                     case 1:
@@ -1068,23 +1095,7 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         public override void FindFrame(int frameHeight)
         {
             // For the most part, our animation matches up with our states.
-
-            if (AttackID == 0)
-            {
-                FrameCycle = 1;
-            }
-            if (AttackID == 2)
-            {
-                FrameCycle = 1;
-            }
-            if (AttackID == 3)
-            {
-                FrameCycle = 1;
-            }
-            if (AttackID == 4)
-            {
-                FrameCycle = 1;
-            }
+            FrameCycle = 1;
 
             if (FrameCycle == 1)
             {
@@ -1127,63 +1138,80 @@ namespace Termination.NPCs.Bosses.ElectronicEye
         }
         public void UpdatePeripheralPositions()
         {
+            switch (ElectronicEyeDistributePhase)
+            {
+
+                case 0:
+                    for (int i = 0; i < rotationSpeed.Count; i++)
+                        rotationSpeed[i] = 0.025f;
+                    for (int i = 0; i < distance.Count; i++)
+                        if (distance[i] >= 200)
+                            distance[i]--;
+                    break;
+
+
+                case 1:
+                    for (int i = 0; i < rotationSpeed.Count; i++)
+                        rotationSpeed[i] = 0.1f;
+                    for (int i = 0; i < distance.Count; i++)
+                        if (distance[i] <= 400)
+                            distance[i]++;
+                    break;
+
+                case 3:
+                    for (int i = 0; i < rotationSpeed.Count; i++)
+                        rotationSpeed[i] = 0.1f;
+                    for (int i = 0; i < distance.Count; i++)
+                    {
+                        if (isRising[i])
+                        {
+                            if (targetDistance[i] - distance[i] < 0)
+                            {
+                                isRising[i] = false;
+                                targetDistance[i] = Main.rand.Next(30, 50);
+                            }
+                            distance[i] += 5;
+                        }
+                        else
+                        {
+                            if (targetDistance[i] - distance[i] > 0)
+                            {
+                                isRising[i] = true;
+                                targetDistance[i] = Main.rand.Next(50, 70);
+                            }
+                            distance[i] -= 5;
+                        }
+                    }
+                    break;
+
+            }
+
             if (ElectronicEyeDistributePhase <= 1 || ElectronicEyeDistributePhase == 3)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    rotation[i] += rotationSpeed[0];
-                    BallMetalCenters[i] = TerminationUtils.PolarPos(npc.Center, distance[i], MathHelper.ToRadians(rotation[i]));
+                    rotation[i] += rotationSpeed[i] * RotationMultiplier;
+                    BallMetalCenters[i] = TerminationUtils.PolarPos(npc.Center, distance[i], rotation[i]);
                 }
             }
-
-            if (ElectronicEyeDistributePhase == 1)
+            else if (ElectronicEyeDistributePhase == 2)
             {
-                for (int i = 0; i < rotationSpeed.Count; i++)
-                    rotationSpeed[i] = 0.1f;
-                for (int i = 0; i < distance.Count; i++)
-                    if (distance[i] <= 400)
-                        distance[i]++;
-            }
-            else if (ElectronicEyeDistributePhase == 3)
-            {
-                for (int i = 0; i < rotationSpeed.Count; i++)
-                    rotationSpeed[i] = 0.1f;
-                for (int i = 0; i < distance.Count; i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    if (isRising[i])
-                    {
-                        if (targetDistance[i] - distance[i] < 0)
-                        {
-                            isRising[i] = false;
-                            targetDistance[i] = Main.rand.Next(30, 50);
-                        }
-                        distance[i] += 5;
-                    }
-                    else
-                    {
-                        if (targetDistance[i] - distance[i] > 0)
-                        {
-                            isRising[i] = true;
-                            targetDistance[i] = Main.rand.Next(50, 70);
-                        }
-                        distance[i] -= 5;
-                    }
+                    Vector2 TangentalVector = new Vector2((float)Math.Cos(rotation[i] + (MathHelper.PiOver2 * RotationMultiplier)), (float)Math.Sin(rotation[i] + (MathHelper.PiOver2 * RotationMultiplier))) * 5f;
+                    if (AttackTimer <= 360)
+                        BallMetalCenters[i] += TangentalVector;
+                    if (AttackTimer >= 360)
+                        BallMetalCenters[i] -= TangentalVector;
                 }
-            }
-            else if (ElectronicEyeDistributePhase != 1)
-            {
-                for (int i = 0; i < rotationSpeed.Count; i++)
-                    rotationSpeed[i] = 0.025f;
-                for (int i = 0; i < distance.Count; i++)
-                    if (distance[i] >= 200)
-                        distance[i]--;
             }
         }
+
         public void MovePeripheralsToRelative()
         {
             if (ElectronicEyeDistributePhase <= 1 || ElectronicEyeDistributePhase == 3)
                 for (int i = 0; i < 4; i++)
-                    BallMetalCenters[i] = TerminationUtils.PolarPos(npc.Center, distance[i], MathHelper.ToRadians(rotation[i]));
+                    BallMetalCenters[i] = TerminationUtils.PolarPos(npc.Center, distance[i], rotation[i]);
         }
         public void TeleportGroup(Vector2 position)
         {

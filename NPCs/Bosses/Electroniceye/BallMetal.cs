@@ -9,12 +9,17 @@ namespace Termination.NPCs.Bosses.ElectronicEye
 {
     public class BallMetal : ModNPC
     {
-        private float timer1 = 0;
         private float shoottimer1 = 5f;
 
+        private bool StartCheck;
+        private int BallNumber
+        {
+            get { return (int)npc.ai[1]; }
+            set { npc.ai[1] = value; }
+        }
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("MACE1");
+            DisplayName.SetDefault("KINETIC DISRUPTOR");
         }
 
         public override void SetDefaults()
@@ -54,59 +59,57 @@ namespace Termination.NPCs.Bosses.ElectronicEye
                 return (ElectronicEye)Main.npc[(int)npc.ai[0]].modNPC;
             }
         }
+
+        public override bool CheckDead()
+        {
+            Head.BallMetals[BallNumber] = null;
+            return true;
+        }
+
+        public bool CheckWorking()
+        {
+            if (npc.life <= 0 || !npc.active)
+                return false;
+            return true;
+        }
+
+        public void BossLinkSetup()
+        {
+            if (!StartCheck)
+            {
+                StartCheck = true;
+                Head.BallMetals[BallNumber] = this;
+            }
+        }
         public override void AI()
         {
-            NPC headNPC = Main.npc[(int)npc.ai[0]];
-            if (!headNPC.active || headNPC.type != mod.NPCType("ElectronicEye"))
+            BossLinkSetup();
+            if (!Head.npc.active || Head.npc.type != mod.NPCType("ElectronicEye"))
             {
                 npc.active = false;
                 return;
             }
-            npc.timeLeft = headNPC.timeLeft;
+            npc.timeLeft = Head.npc.timeLeft;
             if (!npc.HasValidTarget)
             {
                 npc.TargetClosest(false);
             }
 
-            if (Head.ElectronicEyeDistributePhase <= 1)
+            if (Head.ElectronicEyeDistributePhase <= 2)
             {
-                Spin();
-            }
-            else if (Head.ElectronicEyeDistributePhase == 2)
-            {
-                Mace();
+                TrackPositionFromHead();
             }
             else if (Head.ElectronicEyeDistributePhase == 3)
             {
-                Spin();
+                TrackPositionFromHead();
                 npc.dontTakeDamage = false;
             }
         }
 
-        private void Spin()
+        private void TrackPositionFromHead()
         {
-            npc.Center = Head.BallMetalCenters[0];
+            npc.Center = Head.BallMetalCenters[BallNumber];
             npc.rotation = TerminationUtils.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
-        }
-
-        private void Mace()
-        {
-            timer1++;
-            if (timer1 >= 120)
-            {
-                Vector2 target = Head.BallMetalCenters[0];
-                npc.rotation = TerminationUtils.RotateBetween2Points(Main.player[(int)npc.ai[0]].Center, npc.Center) - MathHelper.ToRadians(90);
-                Vector2 shootVel = target - npc.Center;
-                shootVel.Normalize();
-                shootVel *= 5f;
-                npc.velocity = shootVel;
-
-                Lazer("ElectronicEyeBeam", Main.player[npc.target].Center);
-            }
-            if (timer1 >= 359)
-            {
-                timer1 = 0;
-            }
         }
 
         private void Lazer(string whattoshoot, Vector2 wheretoshootit)

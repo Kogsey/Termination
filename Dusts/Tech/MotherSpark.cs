@@ -27,11 +27,11 @@ namespace Termination.Dusts.Tech
             dustlocation4.X = dust.position.X - Main.rand.Next(1, 50);
             dustlocation4.Y = dust.position.Y + Main.rand.Next(1, 50);
 
-            Dust.NewDust(dust.position, 8, 8, mod.DustType("Spark"), 0f, 0f, 1, default(Color), 1f);
-            Dust.NewDust(dustlocation1, 8, 8, mod.DustType("Spark"), 0f, 0f, 1, default(Color), 1f);
-            Dust.NewDust(dustlocation2, 8, 8, mod.DustType("Spark"), 0f, 0f, 1, default(Color), 1f);
-            Dust.NewDust(dustlocation3, 8, 8, mod.DustType("Spark"), 0f, 0f, 1, default(Color), 1f);
-            Dust.NewDust(dustlocation4, 8, 8, mod.DustType("Spark"), 0f, 0f, 1, default(Color), 1f);
+            Dust.NewDust(dust.position, 8, 8, mod.DustType("Spark"), dust.velocity.X + Main.rand.NextFloat(-2f, 2f), dust.velocity.Y + Main.rand.NextFloat(-2f, 2f), 1, dust.color, 1f);
+            Dust.NewDust(dustlocation1, 8, 8, mod.DustType("Spark"), dust.velocity.X + Main.rand.NextFloat(-2f, 2f), dust.velocity.Y + Main.rand.NextFloat(-2f, 2f), 1, dust.color, 1f);
+            Dust.NewDust(dustlocation2, 8, 8, mod.DustType("Spark"), dust.velocity.X + Main.rand.NextFloat(-2f, 2f), dust.velocity.Y + Main.rand.NextFloat(-2f, 2f), 1, dust.color, 1f);
+            Dust.NewDust(dustlocation3, 8, 8, mod.DustType("Spark"), dust.velocity.X + Main.rand.NextFloat(-2f, 2f), dust.velocity.Y + Main.rand.NextFloat(-2f, 2f), 1, dust.color, 1f);
+            Dust.NewDust(dustlocation4, 8, 8, mod.DustType("Spark"), dust.velocity.X + Main.rand.NextFloat(-2f, 2f), dust.velocity.Y + Main.rand.NextFloat(-2f, 2f), 1, dust.color, 1f);
         }
 
         public override bool Update(Dust dust)
