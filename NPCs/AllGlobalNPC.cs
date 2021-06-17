@@ -9,14 +9,12 @@ namespace Termination.NPCs
     {
         public override void NPCLoot(NPC npc)
         {
-            if (npc.type == NPCID.WallofFlesh)
+            /*if (Main.rand.Next(100000) == 10)
+                Item.NewItem(npc.getRect(), mod.ItemType("INSERTSPECIALITEMHERE"), 5 + Main.rand.Next(3));*/
+
+            if (npc.type == NPCID.EyeofCthulhu)
             {
-                Item.NewItem(npc.getRect(), mod.ItemType("GolemCurcuit"), 5 + Main.rand.Next(3));
-            }
-            // Addtional if statements here if you would like to add drops to other vanilla npc.
-            if (npc.type == NPCID.Plantera)
-            {
-                Item.NewItem(npc.getRect(), mod.ItemType("NatureGift"), 15 + Main.rand.Next(5));
+                Item.NewItem(npc.getRect(), mod.ItemType("CthulhuTooth"), 6);
             }
 
             if (npc.type == NPCID.KingSlime)
@@ -24,9 +22,14 @@ namespace Termination.NPCs
                 Item.NewItem(npc.getRect(), mod.ItemType("SuperSlime"), 5 + Main.rand.Next(10));
             }
 
-            if (npc.type == NPCID.EyeofCthulhu)
+            if (npc.type == NPCID.WallofFlesh)
             {
-                Item.NewItem(npc.getRect(), mod.ItemType("Cthulhustooth"), 6);
+                Item.NewItem(npc.getRect(), mod.ItemType("GolemCurcuit"), 5 + Main.rand.Next(3));
+            }
+            // Additional if statements here if you would like to add drops to other vanilla npc.
+            if (npc.type == NPCID.Plantera)
+            {
+                Item.NewItem(npc.getRect(), mod.ItemType("NatureGift"), 15 + Main.rand.Next(5));
             }
 
             if (npc.type == NPCID.MoonLordCore)

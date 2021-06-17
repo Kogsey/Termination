@@ -22,7 +22,7 @@ namespace Termination.Items.Armour
             item.value = 6000;
             item.rare = ItemRarityID.Purple;
             item.defense = 32;
-            item.Termination().extendedrarity = 12;
+            item.Termination().extendedrarity = ExtendedItemRarity.PostElectronicEye;
         }
 
         public override void UpdateEquip(Player player)
