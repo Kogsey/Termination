@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KuTDo8VEEamTF7mPv0xWDwlJ3HuiG1f438kPady6nr2tL9EYpppk1FNUkZAvB0Qk+C+lrgwIfZiQUs8OiKWH1Q==",
+  "dgSpecHash": "5zjzH5/iNNmpMwVQBdVcwlE9Yz3hL9fAze/B+YxSSXiZY9RHrrlU3AOBpCdo7hCpnYZdbxPG63sMOq08YwmPBQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\kad44\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Termination\\Termination.csproj",
   "expectedPackageFiles": [
@@ -11,12 +11,5 @@
     "C:\\Users\\kad44\\.nuget\\packages\\microsoft.netframework.analyzers\\2.9.6\\microsoft.netframework.analyzers.2.9.6.nupkg.sha512",
     "C:\\Users\\kad44\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\kad44\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Termination\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

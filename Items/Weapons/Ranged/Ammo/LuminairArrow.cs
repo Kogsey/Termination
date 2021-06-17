@@ -15,11 +15,12 @@ namespace Termination.Items.Weapons.Ranged.Ammo
 				"\naccelerates as it flies");
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			item.damage = 17;
 			item.ranged = true;
-			item.width = 8;
-			item.height = 8;
+			item.width = 7;
+			item.height = 16;
 			item.maxStack = 999;
 			item.consumable = true;             //You need to set the item consumable so that the ammo would automatically consumed
 			item.knockBack = 1.5f;
@@ -30,11 +31,12 @@ namespace Termination.Items.Weapons.Ranged.Ammo
 			item.ammo = AmmoID.Arrow;              //The ammo class this ammo belongs to.
 		}
 
-		public override void AddRecipes() {
+		public override void AddRecipes()
+		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemType<HardenedAlloy>(), 1);
 			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this, 100);
+			recipe.SetResult(this, 250);
 			recipe.AddRecipe();
 		}
 	}

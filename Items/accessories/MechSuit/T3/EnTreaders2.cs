@@ -9,7 +9,7 @@ namespace Termination.Items.Accessories.MechSuit.T3
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Engineer's Boots");
-            Tooltip.SetDefault("An Engineer needs tough boots for a work enviroment!!!");
+            Tooltip.SetDefault("An Engineer needs tough boots for a work environment!!!");
         }
 
         public override void SetDefaults()
