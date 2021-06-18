@@ -22,14 +22,13 @@ namespace Termination.Items.Weapons.Summon
 		{
 			item.damage = 110;
 			item.summon = true;
-			item.mana = 10;
-			item.width = 26;
-			item.height = 28;
+			item.mana = 20;
+			item.width = 24;
+			item.height = 24;
 			item.useTime = 36;
 			item.useAnimation = 36;
 			item.useStyle = ItemUseStyleID.HoldingUp;
 			item.noMelee = true;
-			item.knockBack = 3;
 			item.value = Item.buyPrice(0, 30, 0, 0);
 			item.rare = ItemRarityID.Cyan;
 			item.UseSound = SoundID.Item44;

@@ -27,7 +27,7 @@ namespace Termination.Items.BossSummons
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(mod.NPCType("ElectronicEye")) && !NPC.AnyNPCs(mod.NPCType("BallMetal")) && !NPC.AnyNPCs(mod.NPCType("BallMetal2")) && !NPC.AnyNPCs(mod.NPCType("ElectronicEyeDrone"));
+            return !NPC.AnyNPCs(mod.NPCType("ElectronicEye")) && !NPC.AnyNPCs(mod.NPCType("BallMetal")) && !NPC.AnyNPCs(mod.NPCType("ElectronicEyeDrone"));
         }
 
         public override bool UseItem(Player player)

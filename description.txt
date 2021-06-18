@@ -28,6 +28,6 @@ update log is not necessarily an upload log, contains future plans and is subjec
 
 0.0.1.6: Added post Moon Lord rarities
 
-0.0.1.5: Replaced sirenium with luminair alloy and updated loot
+0.0.1.5: Replaced sirenium bars with luminair alloy and updated loot
 
 0.0.1.4: Removed engineer class and distributed items to other classes

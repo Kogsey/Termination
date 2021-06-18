@@ -9,8 +9,7 @@ namespace Termination.Items.Placeable.Ores
     {
         public override void SetStaticDefaults()
         {
-            DisplayName
-            .SetDefault("Araaxium Ore");
+            DisplayName.SetDefault("Araaxium Ore");
             Tooltip.SetDefault("Seems weak but may be conducive");
         }
 
