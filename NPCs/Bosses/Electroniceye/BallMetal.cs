@@ -30,8 +30,8 @@ namespace Termination.NPCs.Bosses.ElectronicEye
             npc.defense = 50;
             npc.knockBackResist = 0f;
             npc.dontTakeDamage = true;
-            npc.width = 80;
-            npc.height = 80;
+            npc.width = 60;
+            npc.height = 60;
             npc.alpha = 1;
             npc.value = Item.buyPrice(0, 15, 0, 0);
             npc.npcSlots = 0f;

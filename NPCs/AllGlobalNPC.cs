@@ -10,7 +10,7 @@ namespace Termination.NPCs
         public override void NPCLoot(NPC npc)
         {
             /*if (Main.rand.Next(100000) == 10)
-                Item.NewItem(npc.getRect(), mod.ItemType("INSERTSPECIALITEMHERE"), 5 + Main.rand.Next(3));*/
+                Item.NewItem(npc.getRect(), mod.ItemType("INSERTSPECIALITEMHERE"), 1);*/
 
             if (npc.type == NPCID.EyeofCthulhu)
             {

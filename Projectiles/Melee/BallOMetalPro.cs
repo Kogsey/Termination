@@ -15,8 +15,8 @@ namespace Termination.Projectiles.Melee
 
         public override void SetDefaults()
         {
-            projectile.width = 48;
-            projectile.height = 48;
+            projectile.width = 60;
+            projectile.height = 60;
             projectile.timeLeft = 6;
             projectile.melee = true;
             projectile.aiStyle = -1;

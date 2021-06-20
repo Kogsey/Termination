@@ -8,7 +8,7 @@ namespace Termination.Buffs
         private int MinionType = -1;
         private int MinionID = -1;
 
-        private const int Damage = 6;
+        private const int Damage = 50;
         private const float KB = 1;
 
         public override void SetDefaults()

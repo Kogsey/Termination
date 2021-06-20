@@ -10,7 +10,7 @@ namespace Termination.Projectiles.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frostbite ball");     //The English name of the projectile
+            DisplayName.SetDefault("Frostbite Ball");     //The English name of the projectile
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;    //The length of old position to be recorded
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;        //The recording mode
         }
@@ -36,22 +36,15 @@ namespace Termination.Projectiles.Magic
         {
             projectile.rotation += 1f;
 
-            if (0 == 0) // only spawn 20% of the time
+            for (int i = 0; i < 5; i++)
             {
-                int choice = Main.rand.Next(2); // choose a random number: 0, 1, or 2
+                int choice = Main.rand.Next(9); // choose a random number: 0, 1, or 2
+
                 if (choice == 0) // use that number to select dustID: 15, 57, or 58
-                {
                     choice = 127;
-                }
                 else if (choice == 1)
-                {
                     choice = 33;
-                }
-                // Spawn the dust
-                Dust.NewDust(projectile.position + new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), projectile.width, projectile.height, choice, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 150, default(Color), 0.7f);
-                Dust.NewDust(projectile.position + new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), projectile.width, projectile.height, choice, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 150, default(Color), 0.7f);
-                Dust.NewDust(projectile.position + new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), projectile.width, projectile.height, choice, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 150, default(Color), 0.7f);
-                Dust.NewDust(projectile.position + new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), projectile.width, projectile.height, choice, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 150, default(Color), 0.7f);
+                
                 Dust.NewDust(projectile.position + new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), projectile.width, projectile.height, choice, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 150, default(Color), 0.7f);
             }
         }

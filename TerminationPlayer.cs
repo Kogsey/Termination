@@ -22,17 +22,12 @@ namespace Termination
         public override void ResetEffects()
         {
             ResetVariables();
-            Nanobot = false;
-            ElectronicDrone = false;
-            HardenedLuminiteSetBonus = false;
+
         }
 
         public override void UpdateDead()
         {
             ResetVariables();
-            Nanobot = false;
-            ElectronicDrone = false;
-            HardenedLuminiteSetBonus = false;
         }
 
         public override void UpdateBadLifeRegen()
@@ -50,6 +45,9 @@ namespace Termination
 
         private void ResetVariables()
         {
+            Nanobot = false;
+            ElectronicDrone = false;
+            HardenedLuminiteSetBonus = false;
         }
     }
 }

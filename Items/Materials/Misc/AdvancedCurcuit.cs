@@ -8,7 +8,7 @@ namespace Termination.Items.Materials.Misc
         public override void SetStaticDefaults()
         {
             DisplayName
-            .SetDefault("Advanced Curcuit");
+            .SetDefault("Advanced Circuit");
             Tooltip.SetDefault("This is one of the core components in all of an Engineer's creations.");
         }
 
